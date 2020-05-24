@@ -2,6 +2,10 @@ import React from "react";
 import styles from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import send from "./../../../svg/send.svg";
+import {
+  addPostActionCreator,
+  inputPostActionCreator,
+} from "./../../../redux/state";
 
 const MyPosts = (props) => {
   const posts = props.profileData.posts.map((post) => (
@@ -11,12 +15,12 @@ const MyPosts = (props) => {
   const postText = React.createRef();
 
   const clickHandler = () => {
-    props.dispatch({ type: "ADD-POST" });
+    props.dispatch(addPostActionCreator());
   };
 
   const changeHandler = () => {
     const text = postText.current.value;
-    props.dispatch({ type: "INPUT-POST", message: text });
+    props.dispatch(inputPostActionCreator(text));
   };
 
   return (

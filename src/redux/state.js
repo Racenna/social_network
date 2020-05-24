@@ -1,3 +1,8 @@
+const ADD_POST = "ADD-POST";
+const INPUT_POST = "INPUT-POST";
+const SEND_MESSAGE = "SEND-MESSAGE";
+const INPUT_MESSAGE = "INPUT-MESSAGE";
+
 const store = {
   _state: {
     dialogsData: {
@@ -88,7 +93,7 @@ const store = {
 
   dispatch(action) {
     // action: {type: "SOME-TYPE", ...properties}
-    if (action.type === "SEND-MESSAGE") {
+    if (action.type === SEND_MESSAGE) {
       const newMessage = {
         // id: this._state.dialogsData.messages.length + 1,
         id: 6,
@@ -100,11 +105,11 @@ const store = {
       this._state.dialogsData.messageText = "";
 
       this._callSubscriber(this._state);
-    } else if (action.type === "INPUT-MESSAGE") {
+    } else if (action.type === INPUT_MESSAGE) {
       this._state.dialogsData.messageText = action.message;
 
       this._callSubscriber(this._state);
-    } else if (action.type === "ADD-POST") {
+    } else if (action.type === ADD_POST) {
       const newPost = {
         // id: this._state.profileData.posts.length + 1,
         id: 6,
@@ -116,12 +121,26 @@ const store = {
       this._state.profileData.postText = "";
 
       this._callSubscriber(this._state);
-    } else if (action.type === "INPUT-POST") {
+    } else if (action.type === INPUT_POST) {
       this._state.profileData.postText = action.message;
 
       this._callSubscriber(this._state);
     }
   },
 };
+
+export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE });
+
+export const inputMessageActionCreator = (text) => ({
+  type: INPUT_MESSAGE,
+  message: text,
+});
+
+export const addPostActionCreator = () => ({ type: ADD_POST });
+
+export const inputPostActionCreator = (text) => ({
+  type: INPUT_POST,
+  message: text,
+});
 
 export default store;

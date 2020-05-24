@@ -1,17 +1,21 @@
 import React from "react";
 import styles from "./InputMessage.module.css";
 import send from "./../../../svg/send.svg";
+import {
+  sendMessageActionCreator,
+  inputMessageActionCreator,
+} from "../../../redux/state";
 
 const InputMessage = (props) => {
   const messageText = React.createRef();
 
   const clickHandler = () => {
-    props.dispatch({ type: "SEND-MESSAGE" });
+    props.dispatch(sendMessageActionCreator());
   };
 
   const changeHandler = () => {
     const text = messageText.current.value;
-    props.dispatch({ type: "INPUT-MESSAGE", message: text });
+    props.dispatch(inputMessageActionCreator(text));
   };
 
   return (
