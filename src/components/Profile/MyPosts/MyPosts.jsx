@@ -8,16 +8,15 @@ const MyPosts = (props) => {
     <Post key={post.id} message={post.message} likeCount={post.likeCount} />
   ));
 
-  const text = React.createRef();
+  const postText = React.createRef();
 
   const clickHandler = () => {
-    debugger;
-    props.setPost();
+    props.dispatch({ type: "ADD-POST" });
   };
 
   const changeHandler = () => {
-    debugger;
-    props.setTextPost(text.current.value);
+    const text = postText.current.value;
+    props.dispatch({ type: "INPUT-POST", message: text });
   };
 
   return (
@@ -27,7 +26,7 @@ const MyPosts = (props) => {
         <textarea
           value={props.profileData.postText}
           onChange={changeHandler}
-          ref={text}
+          ref={postText}
           placeholder="Type text"
         />
         <button onClick={clickHandler}>

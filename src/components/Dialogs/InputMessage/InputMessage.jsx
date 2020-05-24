@@ -3,14 +3,15 @@ import styles from "./InputMessage.module.css";
 import send from "./../../../svg/send.svg";
 
 const InputMessage = (props) => {
-  const text = React.createRef();
+  const messageText = React.createRef();
 
   const clickHandler = () => {
-    props.setMessage();
+    props.dispatch({ type: "SEND-MESSAGE" });
   };
 
   const changeHandler = () => {
-    props.setTextMessage(text.current.value);
+    const text = messageText.current.value;
+    props.dispatch({ type: "INPUT-MESSAGE", message: text });
   };
 
   return (
@@ -18,7 +19,7 @@ const InputMessage = (props) => {
       <textarea
         value={props.messageText}
         onChange={changeHandler}
-        ref={text}
+        ref={messageText}
         placeholder="Type text"
       />
       <button onClick={clickHandler}>

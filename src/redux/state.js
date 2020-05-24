@@ -75,7 +75,6 @@ const store = {
       },
     },
   },
-
   _callSubscriber() {
     console.log("State was changed");
   },
@@ -83,49 +82,45 @@ const store = {
   getState() {
     return this._state;
   },
-
-  setMessage() {
-    const newMessage = {
-      // id: this._state.dialogsData.messages.length + 1,
-      id: 6,
-      message: this._state.dialogsData.messageText,
-      status: "My",
-    };
-
-    this._state.dialogsData.messages.push(newMessage);
-    this._state.dialogsData.messageText = "";
-
-    this._callSubscriber(this._state);
-  },
-
-  setTextMessage(message) {
-    this._state.dialogsData.messageText = message;
-
-    this._callSubscriber(this._state);
-  },
-
-  setPost() {
-    const newPost = {
-      // id: this._state.profileData.posts.length + 1,
-      id: 6,
-      message: this._state.profileData.postText,
-      likeCount: 0,
-    };
-
-    this._state.profileData.posts.push(newPost);
-    this._state.profileData.postText = "";
-
-    this._callSubscriber(this._state);
-  },
-
-  setTextPost(message) {
-    this._state.profileData.postText = message;
-
-    this._callSubscriber(this._state);
-  },
-
   subscribe(observer) {
     this._callSubscriber = observer;
+  },
+
+  dispatch(action) {
+    // action: {type: "SOME-TYPE", ...properties}
+    if (action.type === "SEND-MESSAGE") {
+      const newMessage = {
+        // id: this._state.dialogsData.messages.length + 1,
+        id: 6,
+        message: this._state.dialogsData.messageText,
+        status: "My",
+      };
+
+      this._state.dialogsData.messages.push(newMessage);
+      this._state.dialogsData.messageText = "";
+
+      this._callSubscriber(this._state);
+    } else if (action.type === "INPUT-MESSAGE") {
+      this._state.dialogsData.messageText = action.message;
+
+      this._callSubscriber(this._state);
+    } else if (action.type === "ADD-POST") {
+      const newPost = {
+        // id: this._state.profileData.posts.length + 1,
+        id: 6,
+        message: this._state.profileData.postText,
+        likeCount: 0,
+      };
+
+      this._state.profileData.posts.push(newPost);
+      this._state.profileData.postText = "";
+
+      this._callSubscriber(this._state);
+    } else if (action.type === "INPUT-POST") {
+      this._state.profileData.postText = action.message;
+
+      this._callSubscriber(this._state);
+    }
   },
 };
 

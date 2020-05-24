@@ -10,10 +10,11 @@ const reRenderEntireTree = (state) => {
     <React.StrictMode>
       <App
         state={state}
-        setMessage={store.setMessage.bind(store)}
-        setTextMessage={store.setTextMessage.bind(store)}
-        setPost={store.setPost.bind(store)}
-        setTextPost={store.setTextPost.bind(store)}
+        dispatch={store.dispatch.bind(store)}
+        // setMessage={store.setMessage.bind(store)}
+        // setTextMessage={store.setTextMessage.bind(store)}
+        // setPost={store.setPost.bind(store)}
+        // setTextPost={store.setTextPost.bind(store)}
       />
     </React.StrictMode>,
     document.getElementById("root")

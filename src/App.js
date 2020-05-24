@@ -22,8 +22,7 @@ const App = (props) => {
             render={() => (
               <Profile
                 profileData={props.state.profileData}
-                setPost={props.setPost}
-                setTextPost={props.setTextPost}
+                dispatch={props.dispatch}
               />
             )}
           />
@@ -32,8 +31,7 @@ const App = (props) => {
             render={() => (
               <Dialogs
                 state={props.state.dialogsData}
-                setMessage={props.setMessage}
-                setTextMessage={props.setTextMessage}
+                dispatch={props.dispatch}
               />
             )}
           />
