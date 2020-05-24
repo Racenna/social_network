@@ -1,0 +1,50 @@
+.input_post {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.input_post textarea {
+  width: 70%;
+  height: 43px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #666666;
+  border-radius: 1rem;
+  background-color: #666666;
+  color: #ffffff;
+  resize: none;
+}
+
+.input_post button {
+  padding-right: 8px;
+  margin-left: 10px;
+  max-height: 43px;
+  border: 2px solid #d87093;
+  border-radius: 15px;
+  background: #d87093;
+}
+
+.input_post button:hover {
+  cursor: pointer;
+}
+
+.input_post button:active {
+  padding-right: 8px;
+  margin-left: 10px;
+  max-height: 43px;
+  border: 2px solid #b4315d;
+  border-radius: 15px;
+  background: #b4315d;
+}
+
+.input_post img {
+  width: 30px;
+  height: 30px;
+}
+
+::placeholder {
+  color: #cccccc;
+}

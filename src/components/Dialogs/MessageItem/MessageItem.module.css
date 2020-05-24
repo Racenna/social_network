@@ -1,0 +1,27 @@
+.item {
+  padding-bottom: 1rem;
+}
+
+.friend {
+  text-align: left;
+}
+
+.friend span {
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: #4d4d4d;
+  background-color: #4d4d4d;
+}
+
+.my {
+  text-align: right;
+}
+
+.my span {
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: palevioletred;
+  background-color: palevioletred;
+}

@@ -1,0 +1,18 @@
+.item {
+  padding: 0.5rem;
+  color: #ffffff;
+  background-color: #666;
+  border-radius: 1rem;
+  margin: 0.5rem 0;
+}
+
+.post_image {
+  border-radius: 50%;
+  max-width: 35px;
+  margin-right: 1rem;
+}
+
+.centered {
+  display: flex;
+  align-items: center;
+}

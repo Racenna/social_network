@@ -1,0 +1,39 @@
+.dialogs {
+  display: grid;
+
+  grid-template-areas:
+    "d m"
+    "d i";
+
+  grid-template-rows: 10fr 3fr;
+  grid-template-columns: 3fr 10fr;
+}
+
+.dialogs_items {
+  grid-area: d;
+  border-right-style: solid;
+  border-right-width: 0.5px;
+  border-right-color: #fff;
+}
+
+.dialogs_items .item {
+  padding-bottom: 1rem;
+}
+
+.dialogs_items .item a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.dialogs_items .item a.active {
+  color: gold;
+}
+
+.message_items {
+  grid-area: m;
+  padding-left: 1rem;
+}
+
+.message_items .item {
+  padding-bottom: 1rem;
+}

@@ -1,0 +1,25 @@
+.title {
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  color: #fff;
+  margin: 1rem;
+}
+
+.content img {
+  border-radius: 50%;
+  max-width: 30px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}

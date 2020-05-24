@@ -1,0 +1,48 @@
+.input_massage {
+  grid-area: i;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.input_massage textarea {
+  width: 70%;
+  height: 43px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #666666;
+  border-radius: 1rem;
+  background-color: #666666;
+  color: #ffffff;
+  resize: none;
+}
+
+.input_massage button {
+  padding-right: 8px;
+  margin-left: 10px;
+  max-height: 43px;
+  border: 2px solid #d87093;
+  border-radius: 15px;
+  background: #d87093;
+}
+
+.input_massage button:hover {
+  cursor: pointer;
+}
+.input_massage button:active {
+  padding-right: 8px;
+  margin-left: 10px;
+  max-height: 43px;
+  border: 2px solid #b4315d;
+  border-radius: 15px;
+  background: #b4315d;
+}
+
+.input_massage img {
+  width: 30px;
+  height: 30px;
+}
+
+::placeholder {
+  color: #cccccc;
+}
