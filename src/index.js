@@ -3,19 +3,13 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
-import store from "./redux/state";
+// import store from "./redux/store";
+import store from "./redux/redux-store";
 
 const reRenderEntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App
-        state={state}
-        dispatch={store.dispatch.bind(store)}
-        // setMessage={store.setMessage.bind(store)}
-        // setTextMessage={store.setTextMessage.bind(store)}
-        // setPost={store.setPost.bind(store)}
-        // setTextPost={store.setTextPost.bind(store)}
-      />
+      <App state={state} dispatch={store.dispatch.bind(store)} />
     </React.StrictMode>,
     document.getElementById("root")
   );
@@ -23,7 +17,9 @@ const reRenderEntireTree = (state) => {
 
 reRenderEntireTree(store.getState());
 
-store.subscribe(reRenderEntireTree);
+store.subscribe(() => {
+  reRenderEntireTree(store.getState());
+});
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

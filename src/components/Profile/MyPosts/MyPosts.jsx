@@ -8,17 +8,26 @@ import {
 } from "./../../../redux/profileReducer";
 
 const MyPosts = (props) => {
+  console.log(props);
   const posts = props.profileData.posts.map((post) => (
     <Post key={post.id} message={post.message} likeCount={post.likeCount} />
   ));
 
   const clickHandler = () => {
+    if (props.profileData.postText === "") return;
     props.dispatch(addPostActionCreator());
   };
 
   const changeHandler = (e) => {
     const text = e.target.value;
     props.dispatch(inputPostActionCreator(text));
+  };
+
+  const onEnterPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      clickHandler();
+    }
   };
 
   return (
@@ -28,6 +37,7 @@ const MyPosts = (props) => {
         <textarea
           value={props.profileData.postText}
           onChange={changeHandler}
+          onKeyDown={onEnterPress}
           placeholder="Type text"
         />
         <button onClick={clickHandler}>

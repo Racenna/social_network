@@ -8,6 +8,8 @@ import {
 
 const InputMessage = (props) => {
   const clickHandler = () => {
+    if (props.messageText === "") return;
+
     props.dispatch(sendMessageActionCreator());
   };
 
@@ -16,11 +18,19 @@ const InputMessage = (props) => {
     props.dispatch(inputMessageActionCreator(text));
   };
 
+  const onEnterPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      clickHandler();
+    }
+  };
+
   return (
     <div className={styles.input_massage}>
       <textarea
         value={props.messageText}
         onChange={changeHandler}
+        onKeyDown={onEnterPress}
         placeholder="Type text"
       />
       <button onClick={clickHandler}>
