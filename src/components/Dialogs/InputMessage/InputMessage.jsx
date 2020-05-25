@@ -4,17 +4,15 @@ import send from "./../../../svg/send.svg";
 import {
   sendMessageActionCreator,
   inputMessageActionCreator,
-} from "../../../redux/state";
+} from "../../../redux/dialogsReducer";
 
 const InputMessage = (props) => {
-  const messageText = React.createRef();
-
   const clickHandler = () => {
     props.dispatch(sendMessageActionCreator());
   };
 
-  const changeHandler = () => {
-    const text = messageText.current.value;
+  const changeHandler = (e) => {
+    const text = e.target.value;
     props.dispatch(inputMessageActionCreator(text));
   };
 
@@ -23,7 +21,6 @@ const InputMessage = (props) => {
       <textarea
         value={props.messageText}
         onChange={changeHandler}
-        ref={messageText}
         placeholder="Type text"
       />
       <button onClick={clickHandler}>

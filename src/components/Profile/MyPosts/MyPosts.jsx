@@ -5,21 +5,19 @@ import send from "./../../../svg/send.svg";
 import {
   addPostActionCreator,
   inputPostActionCreator,
-} from "./../../../redux/state";
+} from "./../../../redux/profileReducer";
 
 const MyPosts = (props) => {
   const posts = props.profileData.posts.map((post) => (
     <Post key={post.id} message={post.message} likeCount={post.likeCount} />
   ));
 
-  const postText = React.createRef();
-
   const clickHandler = () => {
     props.dispatch(addPostActionCreator());
   };
 
-  const changeHandler = () => {
-    const text = postText.current.value;
+  const changeHandler = (e) => {
+    const text = e.target.value;
     props.dispatch(inputPostActionCreator(text));
   };
 
@@ -30,7 +28,6 @@ const MyPosts = (props) => {
         <textarea
           value={props.profileData.postText}
           onChange={changeHandler}
-          ref={postText}
           placeholder="Type text"
         />
         <button onClick={clickHandler}>
