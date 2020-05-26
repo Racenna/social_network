@@ -4,25 +4,32 @@ import {
   inputPostActionCreator,
 } from "./../../../redux/profileReducer";
 import MyPosts from "./MyPosts";
+import StoreContext from "../../../StoreContext";
 
 const MyPostsContainer = (props) => {
-  const state = props.store.getState();
-
-  const addPost = () => {
-    props.store.dispatch(addPostActionCreator());
-  };
-
-  const inputPost = (text) => {
-    props.store.dispatch(inputPostActionCreator(text));
-  };
-
   return (
-    <MyPosts
-      addPost={addPost}
-      inputPost={inputPost}
-      posts={state.profileData.posts}
-      postText={state.profileData.postText}
-    />
+    <StoreContext.Consumer>
+      {(store) => {
+        const state = store.getState();
+
+        const addPost = () => {
+          store.dispatch(addPostActionCreator());
+        };
+
+        const inputPost = (text) => {
+          store.dispatch(inputPostActionCreator(text));
+        };
+
+        return (
+          <MyPosts
+            addPost={addPost}
+            inputPost={inputPost}
+            posts={state.profileData.posts}
+            postText={state.profileData.postText}
+          />
+        );
+      }}
+    </StoreContext.Consumer>
   );
 };
 

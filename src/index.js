@@ -5,20 +5,23 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 // import store from "./redux/store";
 import store from "./redux/redux-store";
+import StoreContext from "./StoreContext";
 
-const reRenderEntireTree = (store) => {
+const reRenderEntireTree = () => {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} />
+      <StoreContext.Provider value={store}>
+        <App />
+      </StoreContext.Provider>
     </React.StrictMode>,
     document.getElementById("root")
   );
 };
 
-reRenderEntireTree(store);
+reRenderEntireTree();
 
 store.subscribe(() => {
-  reRenderEntireTree(store);
+  reRenderEntireTree();
 });
 
 // If you want your app to work offline and load faster, you can change
