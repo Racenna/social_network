@@ -4,7 +4,6 @@ const SET_USERS = "SET-USERS";
 const initialState = {
   users: [],
 };
-
 const usersReducer = (state = initialState, action) => {
   switch (action.type) {
     case FOLLOW_UNFOLLOW:
@@ -12,7 +11,7 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         users: state.users.map((user) => {
           if (user.id === action.userId) {
-            return { ...user, follow: !user.follow };
+            return { ...user, followed: !user.followed };
           }
           return user;
         }),
@@ -20,7 +19,9 @@ const usersReducer = (state = initialState, action) => {
     case SET_USERS:
       return {
         ...state,
-        users: [...state.users, ...action.users],
+        users: action.users.map((user) => {
+          return { ...user, photos: { ...user.photos } };
+        }),
       };
     default:
       return state;

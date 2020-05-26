@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./InputMessage.module.css";
-import send from "./../../../svg/send.svg";
+import send from "./../../../assets/svg/send.svg";
 
 const InputMessage = (props) => {
   const clickHandler = () => {

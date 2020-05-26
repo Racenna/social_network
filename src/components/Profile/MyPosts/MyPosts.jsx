@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import send from "./../../../svg/send.svg";
+import send from "./../../../assets/svg/send.svg";
 
 const MyPosts = (props) => {
   const posts = props.profileData.posts.map((post) => (
