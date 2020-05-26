@@ -9,6 +9,7 @@ import News from "./components/News/News";
 import Musics from "./components/Musics/Musics";
 import Settings from "./components/Settings/Settings";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 const App = (props) => {
   return (
@@ -19,9 +20,10 @@ const App = (props) => {
         <div className="app-wrapper-content">
           <Route path="/profile" render={() => <Profile />} />
           <Route path="/dialogs" render={() => <DialogsContainer />} />
-          <Route path="/news" component={News} />
-          <Route path="/musics" component={Musics} />
-          <Route path="/settings" component={Settings} />
+          <Route path="/users" render={() => <UsersContainer />} />
+          <Route path="/news" render={News} />
+          <Route path="/musics" render={Musics} />
+          <Route path="/settings" render={Settings} />
         </div>
       </div>
     </BrowserRouter>

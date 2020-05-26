@@ -1,0 +1,4 @@
+.app_wrapper_users {
+  display: flex;
+  flex-direction: column;
+}

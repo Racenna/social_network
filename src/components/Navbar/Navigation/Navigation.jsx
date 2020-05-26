@@ -30,6 +30,11 @@ const Navigation = (props) => {
           Settings
         </NavLink>
       </div>
+      <div className={styles.item}>
+        <NavLink to="users" activeClassName={styles.active}>
+          Find users
+        </NavLink>
+      </div>
     </div>
   );
 };
