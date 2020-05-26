@@ -5,7 +5,7 @@ import Friends from "./Friends/Friends";
 const Sidebar = (props) => {
   return (
     <div className={styles.app_wrapper_sidebar}>
-      <Friends state={props.state.friends} />
+      <Friends friends={props.friends} />
     </div>
   );
 };

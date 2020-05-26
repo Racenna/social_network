@@ -6,7 +6,7 @@ import sidebarReducer from "./sidebarReducer";
 const reducers = combineReducers({
   dialogsData: dialogsReducer,
   profileData: profileReducer,
-  sidebar: sidebarReducer,
+  sidebarData: sidebarReducer,
 });
 
 const store = createStore(reducers);

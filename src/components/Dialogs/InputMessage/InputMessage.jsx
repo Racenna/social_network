@@ -1,21 +1,16 @@
 import React from "react";
 import styles from "./InputMessage.module.css";
 import send from "./../../../svg/send.svg";
-import {
-  sendMessageActionCreator,
-  inputMessageActionCreator,
-} from "../../../redux/dialogsReducer";
 
 const InputMessage = (props) => {
   const clickHandler = () => {
     if (props.messageText === "") return;
-
-    props.dispatch(sendMessageActionCreator());
+    props.sendMessage();
   };
 
   const changeHandler = (e) => {
     const text = e.target.value;
-    props.dispatch(inputMessageActionCreator(text));
+    props.inputMessage(text);
   };
 
   const onEnterPress = (e) => {
