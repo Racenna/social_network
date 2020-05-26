@@ -4,12 +4,12 @@ import Post from "./Post/Post";
 import send from "./../../../svg/send.svg";
 
 const MyPosts = (props) => {
-  const posts = props.posts.map((post) => (
+  const posts = props.profileData.posts.map((post) => (
     <Post key={post.id} message={post.message} likeCount={post.likeCount} />
   ));
 
   const clickHandler = () => {
-    if (props.postText === "") return;
+    if (props.profileData.postText === "") return;
     props.addPost();
   };
 
@@ -30,7 +30,7 @@ const MyPosts = (props) => {
       <span>My post</span>
       <div className={styles.input_post}>
         <textarea
-          value={props.postText}
+          value={props.profileData.postText}
           onChange={changeHandler}
           onKeyDown={onEnterPress}
           placeholder="Type text"

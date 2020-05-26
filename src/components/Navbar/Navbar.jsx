@@ -7,7 +7,7 @@ const Navbar = (props) => {
   return (
     <nav className={styles.nav}>
       <Navigation />
-      <Sidebar friends={props.friends} />
+      <Sidebar friends={props.sidebarData.friends} />
     </nav>
   );
 };

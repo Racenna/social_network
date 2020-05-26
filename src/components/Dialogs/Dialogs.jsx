@@ -5,7 +5,7 @@ import MessageItem from "./MessageItem/MessageItem";
 import InputMessage from "./InputMessage/InputMessage";
 
 const Dialogs = (props) => {
-  const dialogsItems = props.dialogs.map((dialog) => (
+  const dialogsItems = props.dialogsData.dialogs.map((dialog) => (
     <DialogsItem
       key={dialog.id}
       id={dialog.id}
@@ -14,7 +14,7 @@ const Dialogs = (props) => {
     />
   ));
 
-  const messageItems = props.messages.map((message) => (
+  const messageItems = props.dialogsData.messages.map((message) => (
     <MessageItem
       key={message.id}
       message={message.message}
@@ -27,7 +27,7 @@ const Dialogs = (props) => {
       <div className={styles.dialogs_items}>{dialogsItems}</div>
       <div className={styles.message_items}>{messageItems}</div>
       <InputMessage
-        messageText={props.messageText}
+        messageText={props.dialogsData.messageText}
         sendMessage={props.sendMessage}
         inputMessage={props.inputMessage}
       />
