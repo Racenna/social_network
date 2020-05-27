@@ -3,11 +3,16 @@ const INPUT_MESSAGE = "INPUT-MESSAGE";
 
 const initialState = {
   messages: [
-    { id: 1, message: "Hello", status: "Friend" },
-    { id: 2, message: "Go LoL", status: "Friend" },
-    { id: 3, message: "Go discord", status: "My" },
-    { id: 4, message: "Wait pls", status: "Friend" },
-    { id: 5, message: "Ok", status: "My" },
+    { id: 1, message: "Hellooooooooooooooo", status: "Friend" },
+    { id: 2, message: "Hello", status: "Friend" },
+    {
+      id: 3,
+      message: "Hellooooooooooooooooooooooooooo!!!!!!!!!!!!!!!!!!",
+      status: "My",
+    },
+    { id: 4, message: "Hello", status: "Friend" },
+    { id: 5, message: "Hello", status: "My" },
+    { id: 6, message: "...", status: "My" },
   ],
 
   messageText: "",
