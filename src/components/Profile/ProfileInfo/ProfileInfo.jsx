@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "./ProfileInfo.module.css";
+import Preloader from "../../common/Preloader/Preloader";
+import defaultAvatar from "./../../../assets/images/defaultAvatar.png";
+import greenTick from "./../../../assets/svg/green_tick.svg";
+import redCross from "./../../../assets/svg/red_cross.svg";
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+  if (!props.profile) return <Preloader />;
   return (
     <div>
       <img
@@ -12,15 +17,43 @@ const ProfileInfo = () => {
       <div className={styles.user}>
         <img
           className={styles.user_avatar}
-          src="https://vignette.wikia.nocookie.net/discord-wikia/images/5/5e/Default.png/revision/latest/scale-to-width-down/340?cb=20191215094354&path-prefix=ru"
+          src={
+            props.profile.photos.large
+              ? props.profile.photos.large
+              : defaultAvatar
+          }
           alt="user avatar"
         />
         <div className={styles.user_description}>
-          <span>User name: Vladislav K.</span>
-          <span>Date of Birth: 21 october</span>
-          <span>City: Kharkiv</span>
-          <span>Education: Special secondary</span>
-          <span>Email: vlad.kosolapov48@gmail.com</span>
+          <span>User name: {props.profile.fullName}</span>
+          <span>About Me: {props.profile.aboutMe}</span>
+          <span>
+            Looking for a job:{" "}
+            {props.profile.lookingForAJob ? (
+              <img
+                className={styles.tick_and_cross}
+                src={greenTick}
+                alt="tick"
+              />
+            ) : (
+              <img
+                className={styles.tick_and_cross}
+                src={redCross}
+                alt="cross"
+              />
+            )}
+          </span>
+          <span>
+            Looking for a job description:{" "}
+            {props.profile.lookingForAJobDescription
+              ? props.profile.lookingForAJobDescription
+              : "No description"}
+          </span>
+          <div className={styles.contacts}>
+            Contacts: <div>gitHub: {props.profile.contacts.github}</div>
+            <div>facebook: {props.profile.contacts.facebook}</div>
+            <div>instagram: {props.profile.contacts.instagram}</div>
+          </div>
         </div>
       </div>
     </div>
