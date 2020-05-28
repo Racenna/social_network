@@ -10,29 +10,34 @@ const Users = (props) => {
     pages.push(i);
   }
 
-  const renderPage = pages.map((page) => {
-    const classes = `${styles.unselectable} ${
-      props.currentPage === page && styles.selected_page
-    }`;
-
+  const filteredPage = (page) => {
     if (
       page === 1 ||
       page === props.totalUsersCount ||
       (page >= props.currentPage - 3 && page <= props.currentPage + 3) ||
       page === pagesCount
     ) {
-      return (
-        <div
-          key={page}
-          className={classes}
-          onClick={() => {
-            props.onPageChanged(page);
-          }}
-        >
-          {page}
-        </div>
-      );
+      return true;
     }
+    return false;
+  };
+
+  const renderPage = pages.filter(filteredPage).map((page) => {
+    const classes = `${styles.unselectable} ${
+      props.currentPage === page && styles.selected_page
+    }`;
+
+    return (
+      <div
+        key={page}
+        className={classes}
+        onClick={() => {
+          props.onPageChanged(page);
+        }}
+      >
+        {page}
+      </div>
+    );
   });
 
   return (
@@ -71,7 +76,7 @@ const Users = (props) => {
               <button
                 className={styles.unfollow}
                 onClick={() => {
-                  props.followUnfollow(user.id);
+                  props.followAndUnfollow(user.id);
                 }}
               >
                 Unfollow
@@ -80,7 +85,7 @@ const Users = (props) => {
               <button
                 className={styles.follow}
                 onClick={() => {
-                  props.followUnfollow(user.id);
+                  props.followAndUnfollow(user.id);
                 }}
               >
                 Follow

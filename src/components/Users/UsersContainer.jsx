@@ -2,11 +2,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  followAndUnfollowActionCreator,
-  setUsersActionCreator,
-  setCurrentPageActionCreator,
-  setTotalCountActionCreator,
-  toggleIsFetchingActionCreator,
+  followAndUnfollow,
+  setUsers,
+  setCurrentPage,
+  setTotalCount,
+  toggleIsFetching,
 } from "./../../redux/usersReducer";
 import Users from "./Users";
 import * as axios from "axios";
@@ -22,7 +22,7 @@ class UsersContainer extends React.Component {
       .then((response) => {
         this.props.toggleIsFetching(false);
         this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
+        this.props.setTotalCount(response.data.totalCount);
       });
   }
 
@@ -47,7 +47,7 @@ class UsersContainer extends React.Component {
         {this.props.isFetching ? <Preloader /> : null}
         <Users
           onPageChanged={this.onPageChanged}
-          followUnfollow={this.props.followUnfollow}
+          followAndUnfollow={this.props.followAndUnfollow}
           currentPage={this.props.currentPage}
           pageSize={this.props.pageSize}
           totalUsersCount={this.props.totalUsersCount}
@@ -68,7 +68,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+/*const mapDispatchToProps = (dispatch) => {
   return {
     followUnfollow: (userId) => {
       dispatch(followAndUnfollowActionCreator(userId));
@@ -86,6 +86,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(toggleIsFetchingActionCreator(isFetching));
     },
   };
-};
+};*/
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  followAndUnfollow,
+  setUsers,
+  setCurrentPage,
+  setTotalCount,
+  toggleIsFetching,
+})(UsersContainer);
