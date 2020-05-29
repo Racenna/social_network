@@ -2,15 +2,9 @@ import React from "react";
 import styles from "./Users.module.css";
 import userAvatar from "./../../assets/images/defaultAvatar.png";
 import { NavLink } from "react-router-dom";
+import { unFollow, follow } from "../../api/api";
 
 const Users = (props) => {
-  const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-
-  const pages = [];
-  for (let i = 1; i <= pagesCount; i++) {
-    pages.push(i);
-  }
-
   const filteredPage = (page) => {
     if (
       page === 1 ||
@@ -22,6 +16,41 @@ const Users = (props) => {
     }
     return false;
   };
+
+  const unFollowClick = (userId) => {
+    unFollow(userId).then((data) => {
+      if (data.resultCode === 0) {
+        props.followAndUnfollow(userId);
+      }
+    });
+  };
+
+  const followClick = (userId) => {
+    follow(userId).then((data) => {
+      if (data.resultCode === 0) {
+        props.followAndUnfollow(userId);
+      }
+    });
+  };
+
+  const prevuesPage = () => {
+    if (props.currentPage !== 1) props.onPageChanged(props.currentPage - 1);
+    return;
+  };
+
+  const nextPage = () => {
+    if (props.currentPage !== pagesCount)
+      props.onPageChanged(props.currentPage + 1);
+    return;
+  };
+
+  const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+
+  const pages = [];
+
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
+  }
 
   const renderPage = pages.filter(filteredPage).map((page) => {
     const classes = `${styles.unselectable} ${
@@ -44,25 +73,11 @@ const Users = (props) => {
   return (
     <div className={styles.app_wrapper_users}>
       <div className={styles.pagination}>
-        <div
-          className={styles.unselectable}
-          onClick={() => {
-            if (props.currentPage !== 1)
-              props.onPageChanged(props.currentPage - 1);
-            return;
-          }}
-        >
+        <div className={styles.unselectable} onClick={prevuesPage}>
           &larr;
         </div>
         {renderPage}
-        <div
-          className={styles.unselectable}
-          onClick={() => {
-            if (props.currentPage !== pagesCount)
-              props.onPageChanged(props.currentPage + 1);
-            return;
-          }}
-        >
+        <div className={styles.unselectable} onClick={nextPage}>
           &rarr;
         </div>
       </div>
@@ -78,18 +93,14 @@ const Users = (props) => {
             {user.followed ? (
               <button
                 className={styles.unfollow}
-                onClick={() => {
-                  props.followAndUnfollow(user.id);
-                }}
+                onClick={unFollowClick.bind(null, user.id)}
               >
                 Unfollow
               </button>
             ) : (
               <button
                 className={styles.follow}
-                onClick={() => {
-                  props.followAndUnfollow(user.id);
-                }}
+                onClick={followClick.bind(null, user.id)}
               >
                 Follow
               </button>
