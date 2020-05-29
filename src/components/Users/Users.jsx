@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./Users.module.css";
 import userAvatar from "./../../assets/images/defaultAvatar.png";
 import { NavLink } from "react-router-dom";
-import { unFollow, follow } from "../../api/api";
+import { usersAPI } from "../../api/api";
 
 const Users = (props) => {
   const filteredPage = (page) => {
@@ -18,18 +18,23 @@ const Users = (props) => {
   };
 
   const unFollowClick = (userId) => {
-    unFollow(userId).then((data) => {
+    props.toggleIsFollowingInProgress(true, userId);
+    usersAPI.unFollow(userId).then((data) => {
       if (data.resultCode === 0) {
         props.followAndUnfollow(userId);
       }
+      props.toggleIsFollowingInProgress(false, userId);
     });
   };
 
   const followClick = (userId) => {
-    follow(userId).then((data) => {
+    props.toggleIsFollowingInProgress(true, userId);
+
+    usersAPI.follow(userId).then((data) => {
       if (data.resultCode === 0) {
         props.followAndUnfollow(userId);
       }
+      props.toggleIsFollowingInProgress(false, userId);
     });
   };
 
@@ -93,6 +98,9 @@ const Users = (props) => {
             {user.followed ? (
               <button
                 className={styles.unfollow}
+                disabled={props.followingInProgress.some(
+                  (id) => id === user.id
+                )}
                 onClick={unFollowClick.bind(null, user.id)}
               >
                 Unfollow
@@ -100,6 +108,9 @@ const Users = (props) => {
             ) : (
               <button
                 className={styles.follow}
+                disabled={props.followingInProgress.some(
+                  (id) => id === user.id
+                )}
                 onClick={followClick.bind(null, user.id)}
               >
                 Follow

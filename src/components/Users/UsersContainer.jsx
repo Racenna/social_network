@@ -6,27 +6,30 @@ import {
   setCurrentPage,
   setTotalCount,
   toggleIsFetching,
+  toggleIsFollowingInProgress,
 } from "./../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import { getUsers } from "../../api/api";
+import { usersAPI } from "../../api/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.toggleIsFetching(true);
 
-    getUsers(this.props.currentPage, this.props.pageSize).then((data) => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(data.items);
-      this.props.setTotalCount(data.totalCount);
-    });
+    usersAPI
+      .getUsers(this.props.currentPage, this.props.pageSize)
+      .then((data) => {
+        this.props.toggleIsFetching(false);
+        this.props.setUsers(data.items);
+        this.props.setTotalCount(data.totalCount);
+      });
   }
 
   onPageChanged = (page) => {
     this.props.toggleIsFetching(true);
     this.props.setCurrentPage(page);
 
-    getUsers(page, this.props.pageSize).then((data) => {
+    usersAPI.getUsers(page, this.props.pageSize).then((data) => {
       this.props.toggleIsFetching(false);
 
       this.props.setUsers(data.items);
@@ -44,6 +47,8 @@ class UsersContainer extends React.Component {
           pageSize={this.props.pageSize}
           totalUsersCount={this.props.totalUsersCount}
           users={this.props.users}
+          toggleIsFollowingInProgress={this.props.toggleIsFollowingInProgress}
+          followingInProgress={this.props.followingInProgress}
         />
       </>
     );
@@ -57,6 +62,7 @@ const mapStateToProps = (state) => {
     totalUsersCount: state.usersData.totalUsersCount,
     currentPage: state.usersData.currentPage,
     isFetching: state.usersData.isFetching,
+    followingInProgress: state.usersData.followingInProgress,
   };
 };
 
@@ -66,4 +72,5 @@ export default connect(mapStateToProps, {
   setCurrentPage,
   setTotalCount,
   toggleIsFetching,
+  toggleIsFollowingInProgress,
 })(UsersContainer);
