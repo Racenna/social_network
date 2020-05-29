@@ -21,17 +21,17 @@ const Navigation = (props) => {
         </NavLink>
       </div>
       <div className={styles.item}>
-        <NavLink to="musics" activeClassName={styles.active}>
+        <NavLink to="/musics" activeClassName={styles.active}>
           Musics
         </NavLink>
       </div>
       <div className={styles.item}>
-        <NavLink to="settings" activeClassName={styles.active}>
+        <NavLink to="/settings" activeClassName={styles.active}>
           Settings
         </NavLink>
       </div>
       <div className={styles.item}>
-        <NavLink to="users" activeClassName={styles.active}>
+        <NavLink to="/users" activeClassName={styles.active}>
           Find users
         </NavLink>
       </div>

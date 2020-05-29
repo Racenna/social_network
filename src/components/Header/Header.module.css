@@ -9,3 +9,23 @@
   margin-bottom: 10px;
   max-height: 40px;
 }
+
+.login_block {
+  float: right;
+  margin-top: 1rem;
+  margin-right: 2rem;
+}
+
+.login_block a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.login_block span {
+  color: #fff;
+}
+
+/* .login_block a.active {
+  color: palevioletred;
+}
+*/
