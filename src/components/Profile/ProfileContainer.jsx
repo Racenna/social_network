@@ -1,35 +1,12 @@
 import React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
-import { setUserProfile } from "../../redux/profileReducer";
+import { getProfile } from "../../redux/profileReducer";
 import { withRouter } from "react-router-dom";
-import { setUserData } from "../../redux/authReducer";
-import { profileAPI, usersAPI } from "../../api/api";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    if (this.props.match.params.userId) {
-      const userId = this.props.match.params.userId;
-
-      profileAPI.getProfile(userId).then((data) => {
-        this.props.setUserProfile(data);
-      });
-    } else {
-      usersAPI.getActiveUser().then((data) => {
-        if (data.resultCode === 0) {
-          const { id, email, login } = data.data;
-          this.props.setUserData(id, email, login);
-
-          profileAPI.getProfile(id).then((data) => {
-            if (this.props.isAuth) {
-              this.props.setUserProfile(data);
-            } else {
-              this.props.setUserProfile({});
-            }
-          });
-        }
-      });
-    }
+    this.props.getProfile(this.props.match.params.userId, this.props.isAuth);
   }
 
   render() {
@@ -48,6 +25,6 @@ const mapStateToProps = (state) => ({
 
 const withRouterContainerComponent = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps, { setUserProfile, setUserData })(
-  withRouterContainerComponent
-);
+export default connect(mapStateToProps, {
+  getProfile,
+})(withRouterContainerComponent);

@@ -6,6 +6,7 @@ import greenTick from "./../../../assets/svg/green_tick.svg";
 import redCross from "./../../../assets/svg/red_cross.svg";
 
 const ProfileInfo = (props) => {
+  console.log(props);
   if (!props.profile) return <Preloader />;
   return (
     <div>

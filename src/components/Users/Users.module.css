@@ -82,6 +82,13 @@
   transition: 400ms;
 }
 
+.follow:disabled,
+.follow:disabled:hover {
+  background-color: #d2f9ef;
+  transition: 400ms;
+  cursor: not-allowed;
+}
+
 .unfollow {
   border: none;
   background-color: #d87093;
@@ -90,6 +97,13 @@
 .unfollow:hover {
   background-color: #c83767;
   transition: 400ms;
+}
+
+.unfollow:disabled,
+.unfollow:disabled:hover {
+  background-color: #f4d7e1;
+  transition: 400ms;
+  cursor: not-allowed;
 }
 
 .pagination {

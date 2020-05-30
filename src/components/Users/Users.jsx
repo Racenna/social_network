@@ -2,40 +2,14 @@ import React from "react";
 import styles from "./Users.module.css";
 import userAvatar from "./../../assets/images/defaultAvatar.png";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../api/api";
 
 const Users = (props) => {
-  const filteredPage = (page) => {
-    if (
-      page === 1 ||
-      page === props.totalUsersCount ||
-      (page >= props.currentPage - 3 && page <= props.currentPage + 3) ||
-      page === pagesCount
-    ) {
-      return true;
-    }
-    return false;
-  };
-
   const unFollowClick = (userId) => {
-    props.toggleIsFollowingInProgress(true, userId);
-    usersAPI.unFollow(userId).then((data) => {
-      if (data.resultCode === 0) {
-        props.followAndUnfollow(userId);
-      }
-      props.toggleIsFollowingInProgress(false, userId);
-    });
+    props.unfollow(userId);
   };
 
   const followClick = (userId) => {
-    props.toggleIsFollowingInProgress(true, userId);
-
-    usersAPI.follow(userId).then((data) => {
-      if (data.resultCode === 0) {
-        props.followAndUnfollow(userId);
-      }
-      props.toggleIsFollowingInProgress(false, userId);
-    });
+    props.follow(userId);
   };
 
   const prevuesPage = () => {
@@ -56,6 +30,18 @@ const Users = (props) => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
+
+  const filteredPage = (page) => {
+    if (
+      page === 1 ||
+      page === props.totalUsersCount ||
+      (page >= props.currentPage - 3 && page <= props.currentPage + 3) ||
+      page === pagesCount
+    ) {
+      return true;
+    }
+    return false;
+  };
 
   const renderPage = pages.filter(filteredPage).map((page) => {
     const classes = `${styles.unselectable} ${

@@ -1,3 +1,6 @@
+import { profileAPI, usersAPI } from "../api/api";
+import { setUserData } from "./authReducer";
+
 const ADD_POST = "ADD-POST";
 const INPUT_POST = "INPUT-POST";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
@@ -14,6 +17,7 @@ const initialState = {
   profile: null,
 };
 
+/* Action creator */
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
@@ -58,5 +62,30 @@ export const setUserProfile = (profile) => ({
   type: SET_USER_PROFILE,
   profile,
 });
+
+/* Thunk */
+export const getProfile = (userId, isAuth) => {
+  return (dispatch) => {
+    if (userId) {
+      profileAPI.getProfile(userId).then((data) => {
+        dispatch(setUserProfile(data));
+      });
+    } else {
+      usersAPI.getActiveUser().then((data) => {
+        if (data.resultCode === 0) {
+          const { id, email, login } = data.data;
+          dispatch(setUserData(id, email, login));
+          profileAPI.getProfile(id).then((data) => {
+            if (isAuth) {
+              dispatch(setUserProfile(data));
+            } else {
+              dispatch(setUserProfile(null));
+            }
+          });
+        }
+      });
+    }
+  };
+};
 
 export default profileReducer;
