@@ -1,4 +1,4 @@
-import { usersAPI } from "../api/api";
+import { authAPI } from "../api/api";
 
 const SET_USER_DATA = "SET-USER-DATA";
 
@@ -31,7 +31,7 @@ export const setUserData = (id, email, login) => ({
 /* Thunk */
 export const logIn = () => {
   return (dispatch) => {
-    usersAPI.getActiveUser().then((data) => {
+    authAPI.getActiveUser().then((data) => {
       if (data.resultCode === 0) {
         const { id, email, login } = data.data;
         dispatch(setUserData(id, email, login));
