@@ -1,0 +1,11 @@
+.error {
+  border: red 1px solid !important;
+}
+
+.span_error {
+  color: red;
+}
+
+.container {
+  width: 100%;
+}
