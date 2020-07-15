@@ -1,5 +1,4 @@
 const SEND_MESSAGE = "SEND-MESSAGE";
-const INPUT_MESSAGE = "INPUT-MESSAGE";
 
 const initialState = {
   messages: [
@@ -15,8 +14,6 @@ const initialState = {
     { id: 6, message: "...", status: "My" },
   ],
 
-  messageText: "",
-
   dialogs: [
     {
       id: 1,
@@ -31,7 +28,7 @@ const initialState = {
     },
     {
       id: 3,
-      name: "Andrei",
+      name: "Andrey",
       image: "https://html5css.ru/w3css/img_avatar3.png",
     },
     {
@@ -54,21 +51,14 @@ const dialogsReducer = (state = initialState, action) => {
     case SEND_MESSAGE:
       return {
         ...state,
-        messageText: "",
         messages: [
           ...state.messages,
           {
-            id: 6,
-            message: state.messageText,
-            status: "My",
+            id: 65,
+            message: action.message,
+            status: "My", //TODO: owner: user.id
           },
         ],
-      };
-
-    case INPUT_MESSAGE:
-      return {
-        ...state,
-        messageText: action.message,
       };
 
     default:
@@ -76,11 +66,6 @@ const dialogsReducer = (state = initialState, action) => {
   }
 };
 
-export const sendMessage = () => ({ type: SEND_MESSAGE });
-
-export const inputMessage = (text) => ({
-  type: INPUT_MESSAGE,
-  message: text,
-});
+export const sendMessage = (message) => ({ type: SEND_MESSAGE, message });
 
 export default dialogsReducer;

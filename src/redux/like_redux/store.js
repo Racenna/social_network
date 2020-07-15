@@ -7,10 +7,9 @@ const store = {
     dialogsData: {
       messages: [
         { id: 1, message: "Hello", status: "Friend" },
-        { id: 2, message: "Go LoL", status: "Friend" },
-        { id: 3, message: "Go discord", status: "My" },
-        { id: 4, message: "Wait pls", status: "Friend" },
-        { id: 5, message: "Ok", status: "My" },
+        { id: 2, message: "How are you", status: "Friend" },
+        { id: 3, message: "I'm fine", status: "My" },
+        { id: 4, message: "thx", status: "Friend" },
       ],
 
       messageText: "",

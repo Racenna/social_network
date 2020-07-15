@@ -26,11 +26,7 @@ const Dialogs = (props) => {
     <div className={styles.dialogs}>
       <div className={styles.dialogs_items}>{dialogsItems}</div>
       <div className={styles.message_items}>{messageItems}</div>
-      <InputMessage
-        messageText={props.dialogsData.messageText}
-        sendMessage={props.sendMessage}
-        inputMessage={props.inputMessage}
-      />
+      <InputMessage sendMessage={props.sendMessage} />
     </div>
   );
 };

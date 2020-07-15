@@ -2,7 +2,6 @@ import { profileAPI, authAPI } from "../api/api";
 import { setUserData } from "./authReducer";
 
 const ADD_POST = "ADD-POST";
-const INPUT_POST = "INPUT-POST";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const SET_STATUS = "SET-STATUS";
 
@@ -12,32 +11,23 @@ const initialState = {
     { id: 2, message: "It's my first post", likeCount: 5 },
     { id: 3, message: "Cool! ~(^-^~)", likeCount: 25 },
   ],
-  postText: "",
   profile: null,
   status: "",
 };
 
-/* Action creator */
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
       return {
         ...state,
-        postText: "",
         posts: [
           ...state.posts,
           {
-            id: 6,
-            message: state.postText,
+            id: 65,
+            message: action.post,
             likeCount: 0,
           },
         ],
-      };
-
-    case INPUT_POST:
-      return {
-        ...state,
-        postText: action.message,
       };
 
     case SET_USER_PROFILE:
@@ -57,12 +47,8 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPost = () => ({ type: ADD_POST });
-
-export const inputPost = (text) => ({
-  type: INPUT_POST,
-  message: text,
-});
+/* Action creator */
+export const addPost = (post) => ({ type: ADD_POST, post });
 
 export const setUserProfile = (profile) => ({
   type: SET_USER_PROFILE,
