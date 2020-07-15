@@ -36,16 +36,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-// const withRedirect = withAuthRedirect(UsersContainer);
-
-// export default withAuthRedirect(
-//   connect(mapStateToProps, {
-//     getUsers,
-//     follow,
-//     unfollow,
-//   })(UsersContainer)
-// );
-
 export default compose(
   connect(mapStateToProps, {
     getUsers,

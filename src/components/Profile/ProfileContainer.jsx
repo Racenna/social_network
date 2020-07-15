@@ -12,9 +12,19 @@ import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    const userId = this.props.match.params.userId;
-    this.props.getProfile(userId);
-    this.props.getStatus(userId);
+    // myId -- if path: /profile
+    // userId -if path: /profile/:id
+    // const userId = this.props.match.params.userId;
+    const id = this.props.match.params.userId || this.props.myId;
+    // this.props.getProfile(this.props.myId);
+    // this.props.getStatus(this.props.myId);
+    this.props.getProfile(id);
+    this.props.getStatus(id);
+    console.log(
+      `my id: ${this.props.myId} |
+       user: ${this.props.match.params.userId} |
+       result: ${id}`
+    );
   }
 
   render() {
@@ -27,6 +37,7 @@ class ProfileContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  myId: state.auth.id,
   profile: state.profileData.profile,
   status: state.profileData.status,
 });
@@ -37,6 +48,6 @@ export default compose(
     getStatus,
     updateStatus,
   }),
-  withRouter
-  // withAuthRedirect
+  withRouter,
+  withAuthRedirect
 )(ProfileContainer);

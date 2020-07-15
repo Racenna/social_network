@@ -25,6 +25,22 @@
   color: #fff;
 }
 
+.login_block button {
+  color: #fff;
+  font-size: 16px;
+  height: 30px;
+  width: 90px;
+  border-radius: 1rem;
+  margin-left: 1rem;
+  border: none;
+  background: #666666;
+}
+
+.login_block button:hover {
+  cursor: pointer;
+  background: #595959;
+}
+
 /* .login_block a.active {
   color: palevioletred;
 }
