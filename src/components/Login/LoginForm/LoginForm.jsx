@@ -2,7 +2,7 @@ import React from "react";
 import { reduxForm, Field } from "redux-form";
 import { Input } from "../../common/FormsControls/FromsControls";
 import { required } from "../../../util/validator/validators";
-// import styles from "./Login.module.css";
+import errorStyles from "../../common/FormsControls/FromsControls.module.css";
 
 const LoginForm = (props) => {
   return (
@@ -28,6 +28,9 @@ const LoginForm = (props) => {
         <Field type="checkbox" name="rememberMe" component="input" />
         Remember me
       </div>
+      {props.error && (
+        <div className={errorStyles.summeryError}>{props.error}</div>
+      )}
       <div>
         <button>Login</button>
       </div>

@@ -9,3 +9,7 @@
 .container {
   width: 100%;
 }
+
+.summeryError {
+  color: red;
+}
