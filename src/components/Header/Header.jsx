@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Header.module.css";
 import logo from "./../../assets/svg/logo.svg";
-import { NavLink, Redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
   return (
@@ -11,12 +11,14 @@ const Header = (props) => {
         {props.isAuth ? (
           <div>
             <span>{props.login}</span>
-            <button onClick={props.logout}>
-              <NavLink to="/login">Log out</NavLink>
-            </button>
+            <NavLink to="/login">
+              <button onClick={props.logout}>Log out</button>
+            </NavLink>
           </div>
         ) : (
-          <NavLink to="/login">Login</NavLink>
+          <NavLink to="/login">
+            <button>Login</button>
+          </NavLink>
         )}
       </div>
     </header>

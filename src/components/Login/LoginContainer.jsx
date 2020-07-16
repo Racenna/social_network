@@ -5,6 +5,7 @@ import { login } from "../../redux/authReducer";
 
 class LoginContainer extends React.Component {
   render() {
+    debugger;
     return <Login {...this.props} />;
   }
 }
