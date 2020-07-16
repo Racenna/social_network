@@ -5,6 +5,7 @@ import defaultAvatar from "./../../../assets/images/defaultAvatar.png";
 import greenTick from "./../../../assets/svg/green_tick.svg";
 import redCross from "./../../../assets/svg/red_cross.svg";
 import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
   if (!props.profile) return <Preloader />;
@@ -26,7 +27,11 @@ const ProfileInfo = (props) => {
           alt="user avatar"
         />
         <div className={styles.user_description}>
-          <ProfileStatus
+          {/* <ProfileStatus
+            status={props.status}
+            updateStatus={props.updateStatus}
+          /> */}
+          <ProfileStatusWithHooks
             status={props.status}
             updateStatus={props.updateStatus}
           />
