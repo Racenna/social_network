@@ -1,19 +1,18 @@
 import React from "react";
-import { connect } from "react-redux";
-import { getUsers, follow, unfollow } from "./../../redux/usersReducer";
-import Users from "./Users";
-import Preloader from "../common/Preloader/Preloader";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import { connect } from "react-redux";
+import { getUsers, follow, unfollow } from "./../../redux/usersReducer";
 import {
-  getProfileUsers,
-  getCurrentPage,
-  getPageSize,
-  getTotalUsersCount,
-  getIsFetching,
-  getFollowingInProgress,
-  getUsersSuperSelector,
-} from "../../redux/usersSelectors";
+  getProfileUsersSelector,
+  getCurrentPageSelector,
+  getPageSizeSelector,
+  getTotalUsersCountSelector,
+  getIsFetchingSelector,
+  getFollowingInProgressSelector,
+} from "../../selectors/usersSelectors";
+import Preloader from "../common/Preloader/Preloader";
+import Users from "./Users";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -34,26 +33,14 @@ class UsersContainer extends React.Component {
   }
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     currentPage: state.usersData.currentPage,
-//     users: state.usersData.users,
-//     pageSize: state.usersData.pageSize,
-//     totalUsersCount: state.usersData.totalUsersCount,
-//     isFetching: state.usersData.isFetching,
-//     followingInProgress: state.usersData.followingInProgress,
-//   };
-// };
-
 const mapStateToProps = (state) => {
   return {
-    currentPage: getCurrentPage(state),
-    users: getProfileUsers(state),
-    // users: getUsersSuperSelector(state),
-    pageSize: getPageSize(state),
-    totalUsersCount: getTotalUsersCount(state),
-    isFetching: getIsFetching(state),
-    followingInProgress: getFollowingInProgress(state),
+    currentPage: getCurrentPageSelector(state),
+    users: getProfileUsersSelector(state),
+    pageSize: getPageSizeSelector(state),
+    totalUsersCount: getTotalUsersCountSelector(state),
+    isFetching: getIsFetchingSelector(state),
+    followingInProgress: getFollowingInProgressSelector(state),
   };
 };
 

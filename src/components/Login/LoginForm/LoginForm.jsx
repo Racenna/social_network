@@ -1,36 +1,25 @@
 import React from "react";
-import { reduxForm, Field } from "redux-form";
-import { Input } from "../../common/FormsControls/FromsControls";
+import { reduxForm } from "redux-form";
+import { Input, CreatField } from "../../common/FormsControls/FromsControls";
 import { required } from "../../../util/validator/validators";
 import errorStyles from "../../common/FormsControls/FromsControls.module.css";
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
   return (
-    <form onSubmit={props.handleSubmit}>
-      <div>
-        <Field
-          placeholder="Email"
-          name="email"
-          component={Input}
-          validate={[required]}
-        />
-      </div>
-      <div>
-        <Field
-          placeholder="Password"
-          name="password"
-          type="password"
-          component={Input}
-          validate={[required]}
-        />
-      </div>
-      <div>
-        <Field type="checkbox" name="rememberMe" component="input" />
-        Remember me
-      </div>
-      {props.error && (
-        <div className={errorStyles.summeryError}>{props.error}</div>
+    <form onSubmit={handleSubmit}>
+      {CreatField("Email", "email", [required], Input)}
+      {CreatField("Password", "password", [required], Input, {
+        type: "password",
+      })}
+      {CreatField(
+        null,
+        "rememberMe",
+        [],
+        "input",
+        { type: "checkbox" },
+        "Remember me"
       )}
+      {error && <div className={errorStyles.summeryError}>{error}</div>}
       <div>
         <button>Login</button>
       </div>

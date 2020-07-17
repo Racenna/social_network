@@ -1,9 +1,9 @@
 // import { authAPI } from "../api/api";
 // import { stopSubmit } from "redux-form";
 
-import { getUserData } from "./authReducer";
+import { getUserData } from "./../redux/authReducer";
 
-const SET_INITIALIZED = "SET_INITIALIZED";
+const SET_INITIALIZED = "app/SET_INITIALIZED";
 
 const initialState = {
   initialized: false,
@@ -23,14 +23,12 @@ const appReducer = (state = initialState, action) => {
 
 export const setInitialized = () => ({ type: SET_INITIALIZED });
 
-export const initializeApp = () => {
-  return (dispatch) => {
-    let promise = dispatch(getUserData());
-    // dispatch something else
-    Promise.all([promise]).then(() => {
-      dispatch(setInitialized());
-    });
-  };
+export const initializeApp = () => (dispatch) => {
+  let promise = dispatch(getUserData());
+  // dispatch something else
+  Promise.all([promise]).then(() => {
+    dispatch(setInitialized());
+  });
 };
 
 export default appReducer;

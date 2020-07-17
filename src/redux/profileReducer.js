@@ -1,10 +1,10 @@
 import { profileAPI, authAPI } from "../api/api";
 import { setUserData } from "./authReducer";
 
-const ADD_POST = "ADD_POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_STATUS = "SET_STATUS";
-const DELETE_POST = "DELETE_POST";
+const ADD_POST = "profile/ADD_POST";
+const SET_USER_PROFILE = "profile/SET_USER_PROFILE";
+const SET_STATUS = "profile/SET_STATUS";
+const DELETE_POST = "profile/DELETE_POST";
 
 const initialState = {
   posts: [
@@ -70,53 +70,40 @@ export const setStatus = (status) => ({
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 
 /* Thunk */
-export const getProfile = (userId) => {
-  return (dispatch) => {
-    if (userId) {
-      profileAPI.getProfile(userId).then((data) => {
-        dispatch(setUserProfile(data));
-      });
-    } else {
-      authAPI.getActiveUser().then((data) => {
-        if (data.resultCode === 0) {
-          const { id, email, login } = data.data;
-          dispatch(setUserData(id, email, login));
-          profileAPI.getProfile(id).then((data) => {
-            dispatch(setUserProfile(data));
-          });
-        }
-      });
+export const getProfile = (userId) => async (dispatch) => {
+  if (userId) {
+    const data = await profileAPI.getProfile(userId);
+    dispatch(setUserProfile(data));
+  } else {
+    const response = await authAPI.getActiveUser();
+    if (response.resultCode === 0) {
+      const { id, email, login } = response.data;
+      dispatch(setUserData(id, email, login));
+      const data = await profileAPI.getProfile(id);
+      dispatch(setUserProfile(data));
     }
-  };
+  }
 };
 
-export const getStatus = (userId) => {
-  return (dispatch) => {
-    if (userId) {
-      profileAPI.getStatus(userId).then((response) => {
-        dispatch(setStatus(response.data));
-      });
-    } else {
-      authAPI.getActiveUser().then((data) => {
-        if (data.resultCode === 0) {
-          const { id } = data.data;
-          profileAPI.getStatus(id).then((response) => {
-            dispatch(setStatus(response.data));
-          });
-        }
-      });
+export const getStatus = (userId) => async (dispatch) => {
+  if (userId) {
+    const data = await profileAPI.getStatus(userId);
+    dispatch(setStatus(data));
+  } else {
+    const response = await authAPI.getActiveUser();
+    if (response.resultCode === 0) {
+      const { id } = response.data;
+      const data = await profileAPI.getStatus(id);
+      dispatch(setStatus(data));
     }
-  };
+  }
 };
 
-export const updateStatus = (status) => {
-  return (dispatch) => {
-    profileAPI.updateStatus(status).then((response) => {
-      if (response.data.resultCode === 0) {
-        dispatch(setStatus(status));
-      }
-    });
-  };
+export const updateStatus = (status) => async (dispatch) => {
+  const data = await profileAPI.updateStatus(status);
+  if (data.resultCode === 0) {
+    dispatch(setStatus(status));
+  }
 };
 
 export default profileReducer;

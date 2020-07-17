@@ -1,5 +1,4 @@
 import React from "react";
-import Profile from "./Profile";
 import { connect } from "react-redux";
 import {
   getProfile,
@@ -9,22 +8,13 @@ import {
 import { withRouter } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
+import Profile from "./Profile";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    // myId -- if path: /profile
-    // userId -if path: /profile/:id
-    // const userId = this.props.match.params.userId;
     const id = this.props.match.params.userId || this.props.myId;
-    // this.props.getProfile(this.props.myId);
-    // this.props.getStatus(this.props.myId);
     this.props.getProfile(id);
     this.props.getStatus(id);
-    console.log(
-      `my id: ${this.props.myId} |
-       user: ${this.props.match.params.userId} |
-       result: ${id}`
-    );
   }
 
   render() {

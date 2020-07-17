@@ -1,11 +1,11 @@
 import { usersAPI } from "./../api/api";
 
-const FOLLOW_UNFOLLOW = "FOLLOW_UNFOLLOW";
-const SET_USERS = "SET_USERS";
-const SET_PAGE = "SET_PAGE";
-const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
-const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
-const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
+const FOLLOW_UNFOLLOW = "users/FOLLOW_UNFOLLOW";
+const SET_USERS = "users/SET_USERS";
+const SET_PAGE = "users/SET_PAGE";
+const SET_TOTAL_COUNT = "users/SET_TOTAL_COUNT";
+const TOGGLE_IS_FETCHING = "users/TOGGLE_IS_FETCHING";
+const TOGGLE_IS_FOLLOWING_PROGRESS = "users/TOGGLE_IS_FOLLOWING_PROGRESS";
 
 const initialState = {
   users: [],
@@ -108,30 +108,22 @@ export const getUsers = (currentPage, pageSize) => {
   };
 };
 
-export const follow = (userId) => {
-  return (dispatch) => {
-    dispatch(toggleIsFollowingInProgress(true, userId));
+const followUnfollowFlow = async (dispatch, userId, apiMethod) => {
+  dispatch(toggleIsFollowingInProgress(true, userId));
 
-    usersAPI.follow(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(followAndUnfollow(userId));
-      }
-      dispatch(toggleIsFollowingInProgress(false, userId));
-    });
-  };
+  const data = await apiMethod(userId);
+  if (data.resultCode === 0) {
+    dispatch(followAndUnfollow(userId));
+  }
+  dispatch(toggleIsFollowingInProgress(false, userId));
 };
 
-export const unfollow = (userId) => {
-  return (dispatch) => {
-    dispatch(toggleIsFollowingInProgress(true, userId));
+export const follow = (userId) => async (dispatch) => {
+  followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI));
+};
 
-    usersAPI.unfollow(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(followAndUnfollow(userId));
-      }
-      dispatch(toggleIsFollowingInProgress(false, userId));
-    });
-  };
+export const unfollow = (userId) => async (dispatch) => {
+  followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI));
 };
 
 export default usersReducer;

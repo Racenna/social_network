@@ -1,7 +1,9 @@
 import React from "react";
-import { Route, BrowserRouter, withRouter } from "react-router-dom";
-
-import "./App.css";
+import { Route, withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { initializeApp } from "./redux/appReducer";
+// Components
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import News from "./components/News/News";
 import Musics from "./components/Musics/Musics";
@@ -11,11 +13,9 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginContainer from "./components/Login/LoginContainer";
-// import { getUserData } from "./redux/authReducer";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { initializeApp } from "./redux/appRedcer";
 import Preloader from "./components/common/Preloader/Preloader";
+// Style
+import "./App.css";
 
 class App extends React.Component {
   componentDidMount() {
@@ -27,7 +27,6 @@ class App extends React.Component {
       return <Preloader />;
     } else
       return (
-        // <BrowserRouter>
         <div className="app-wrapper">
           <HeaderContainer />
           <NavbarContainer />
@@ -44,7 +43,6 @@ class App extends React.Component {
             <Route path="/login" render={() => <LoginContainer />} />
           </div>
         </div>
-        // </BrowserRouter>
       );
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import InputMessageReduxForm from "./InputMessageForm/InputMessageForm";
+import InputMessageForm from "./InputMessageForm/InputMessageForm";
 
 const InputMessage = (props) => {
   const onSubmit = (data) => {
@@ -7,7 +7,7 @@ const InputMessage = (props) => {
     props.sendMessage(data.message.trim());
   };
 
-  return <InputMessageReduxForm onSubmit={onSubmit} />;
+  return <InputMessageForm onSubmit={onSubmit} />;
 };
 
 export default InputMessage;

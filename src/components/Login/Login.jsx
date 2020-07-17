@@ -1,23 +1,22 @@
 import React from "react";
-import styles from "./Login.module.css";
-import LoginReduxForm from "./LoginForm/LoginForm";
 import { Redirect } from "react-router-dom";
+import LoginForm from "./LoginForm/LoginForm";
+// import styles from "./Login.module.css";
 
-const Login = (props) => {
+const Login = ({ login, isAuth }) => {
   const onSubmit = (data) => {
     const { email, password, rememberMe } = data;
-    props.login(email, password, rememberMe);
-    console.log(email, password, rememberMe);
+    login(email, password, rememberMe);
   };
 
-  if (props.isAuth) {
+  if (isAuth) {
     return <Redirect to={"/profile"} />;
   }
 
   return (
     <div>
       <h1>Login</h1>
-      <LoginReduxForm onSubmit={onSubmit} />
+      <LoginForm onSubmit={onSubmit} />
     </div>
   );
 };

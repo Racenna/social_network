@@ -1,8 +1,14 @@
 import React from "react";
+import { Field } from "redux-form";
 import styles from "./FromsControls.module.css";
 
-export const Textarea = ({ input, meta, className, ...props }) => {
-  const hasError = meta.touched && meta.error;
+export const Textarea = ({
+  input,
+  meta: { touched, error },
+  className,
+  ...props
+}) => {
+  const hasError = touched && error;
   return (
     <div className={styles.container}>
       <div>
@@ -12,13 +18,18 @@ export const Textarea = ({ input, meta, className, ...props }) => {
           {...props}
         />
       </div>
-      {hasError && <span className={styles.span_error}>{meta.error}</span>}
+      {hasError && <span className={styles.span_error}>{error}</span>}
     </div>
   );
 };
 
-export const Input = ({ input, meta, className, ...props }) => {
-  const hasError = meta.touched && meta.error;
+export const Input = ({
+  input,
+  meta: { touched, error },
+  className,
+  ...props
+}) => {
+  const hasError = touched && error;
   return (
     <div className={styles.container}>
       <div>
@@ -28,7 +39,27 @@ export const Input = ({ input, meta, className, ...props }) => {
           {...props}
         />
       </div>
-      {hasError && <span className={styles.span_error}>{meta.error}</span>}
+      {hasError && <span className={styles.span_error}>{error}</span>}
     </div>
   );
 };
+
+export const CreatField = (
+  placeholder,
+  name,
+  validators,
+  component,
+  props = {},
+  text = ""
+) => (
+  <div>
+    <Field
+      placeholder={placeholder}
+      name={name}
+      validate={validators}
+      component={component}
+      {...props}
+    />
+    {text}
+  </div>
+);

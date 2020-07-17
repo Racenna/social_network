@@ -15,21 +15,3 @@
   border-right-width: 0.5px;
   border-right-color: #fff;
 }
-
-.dialogs_items .item {
-  padding-bottom: 1rem;
-}
-
-.dialogs_items .item a {
-  color: #fff;
-  text-decoration: none;
-}
-
-.dialogs_items .item a.active {
-  color: gold;
-}
-
-.message_items {
-  grid-area: m;
-  padding-left: 1rem;
-}

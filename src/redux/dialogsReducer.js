@@ -1,4 +1,4 @@
-const SEND_MESSAGE = "SEND_MESSAGE";
+const SEND_MESSAGE = "dialogs/SEND_MESSAGE";
 
 const initialState = {
   messages: [
@@ -28,7 +28,7 @@ const initialState = {
     },
     {
       id: 3,
-      name: "Andrey",
+      name: "Andrei",
       image: "https://html5css.ru/w3css/img_avatar3.png",
     },
     {
@@ -55,7 +55,7 @@ const dialogsReducer = (state = initialState, action) => {
           ...state.messages,
           {
             id: 65,
-            message: action.message,
+            message: action.payload,
             status: "My", //TODO: owner: user.id
           },
         ],
@@ -66,6 +66,6 @@ const dialogsReducer = (state = initialState, action) => {
   }
 };
 
-export const sendMessage = (message) => ({ type: SEND_MESSAGE, message });
+export const sendMessage = (payload) => ({ type: SEND_MESSAGE, payload });
 
 export default dialogsReducer;

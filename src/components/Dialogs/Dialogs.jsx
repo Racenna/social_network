@@ -1,8 +1,8 @@
 import React from "react";
-import styles from "./Dialogs.module.css";
 import DialogsItem from "./DialogsItem/DialogsItem";
 import MessageItem from "./MessageItem/MessageItem";
 import InputMessage from "./InputMessage/InputMessage";
+import styles from "./Dialogs.module.css";
 
 const Dialogs = (props) => {
   const dialogsItems = props.dialogsData.dialogs.map((dialog) => (

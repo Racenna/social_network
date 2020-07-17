@@ -1,0 +1,43 @@
+.pagination {
+  display: flex;
+  flex-direction: row;
+}
+
+.pagination div {
+  display: flex;
+  justify-content: center;
+  margin: 4px;
+  min-width: 1.5rem;
+  max-width: 3rem;
+  padding: 4px;
+  border-radius: 5px;
+  background-color: #4d4d4d;
+  cursor: pointer;
+}
+
+.pagination div:hover {
+  background-color: #666666;
+  cursor: pointer;
+}
+
+.pagination .selected_page {
+  font-weight: bold;
+  transition: 200ms;
+  background-color: #fff;
+  color: #000;
+}
+
+.pagination .selected_page:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.unselectable {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Conqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
