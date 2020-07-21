@@ -5,7 +5,6 @@ import Login from "./Login";
 
 class LoginContainer extends React.Component {
   render() {
-    debugger;
     return <Login {...this.props} />;
   }
 }

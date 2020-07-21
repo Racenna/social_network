@@ -12,8 +12,8 @@
 .user_avatar {
   border-radius: 50%;
   margin-right: 1rem;
-  max-width: 110px;
-  max-height: 110px;
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .user_description {
@@ -28,5 +28,5 @@
 }
 
 .contacts div {
-  margin-left: 3rem;
+  margin-left: 1rem;
 }

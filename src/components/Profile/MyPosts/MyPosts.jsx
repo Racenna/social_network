@@ -8,6 +8,7 @@ const MyPosts = (props) => {
   ));
 
   const onSubmit = (data) => {
+    if (data.message === undefined || data.message.trim() === "") return;
     props.addPost(data.post.trim());
   };
 

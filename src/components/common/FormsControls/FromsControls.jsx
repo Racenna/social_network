@@ -44,7 +44,7 @@ export const Input = ({
   );
 };
 
-export const CreatField = (
+export const createField = (
   placeholder,
   name,
   validators,
