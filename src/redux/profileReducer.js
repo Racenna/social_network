@@ -85,8 +85,8 @@ export const savePhotoSuccess = (photos) => ({
 /* Thunk */
 export const getProfile = (userId) => async (dispatch) => {
   if (userId) {
-    const data = await profileAPI.getProfile(userId);
-    dispatch(setUserProfile(data));
+    const response = await profileAPI.getProfile(userId);
+    dispatch(setUserProfile(response));
   } else {
     const response = await authAPI.getActiveUser();
     if (response.resultCode === 0) {
@@ -100,8 +100,8 @@ export const getProfile = (userId) => async (dispatch) => {
 
 export const getStatus = (userId) => async (dispatch) => {
   if (userId) {
-    const data = await profileAPI.getStatus(userId);
-    dispatch(setStatus(data));
+    const response = await profileAPI.getStatus(userId);
+    dispatch(setStatus(response));
   } else {
     const response = await authAPI.getActiveUser();
     if (response.resultCode === 0) {
@@ -120,19 +120,20 @@ export const updateStatus = (status) => async (dispatch) => {
 };
 
 export const savePhoto = (file) => async (dispatch) => {
-  const data = await profileAPI.savePhoto(file);
-  if (data.resultCode === 0) {
-    dispatch(savePhotoSuccess(data.data.photos));
+  const response = await profileAPI.savePhoto(file);
+  if (response.resultCode === 0) {
+    dispatch(savePhotoSuccess(response.data.photos));
   }
 };
 
 export const saveProfile = (profile) => async (dispatch, getState) => {
   const userId = getState().auth.id;
-  const data = await profileAPI.saveProfile(profile);
-  if (data.resultCode === 0) {
+  const response = await profileAPI.saveProfile(profile);
+  if (response.resultCode === 0) {
     dispatch(getProfile(userId));
   } else {
-    const message = data.messages.length > 0 ? data.messages[0] : "Some error";
+    const message =
+      response.messages.length > 0 ? response.messages[0] : "Some error";
     dispatch(stopSubmit("editProfile", { _error: message }));
     return Promise.reject(message);
     // dispatch(stopSubmit("editProfile", { contacts: { facebook: message } })); //TODO: parse string

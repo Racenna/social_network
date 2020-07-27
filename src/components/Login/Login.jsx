@@ -3,10 +3,10 @@ import { Redirect } from "react-router-dom";
 import LoginForm from "./LoginForm/LoginForm";
 // import styles from "./Login.module.css";
 
-const Login = ({ login, isAuth }) => {
+const Login = ({ login, isAuth, captchaUrl }) => {
   const onSubmit = (data) => {
-    const { email, password, rememberMe } = data;
-    login(email, password, rememberMe);
+    const { email, password, rememberMe, captcha } = data;
+    login(email, password, rememberMe, captcha);
   };
 
   if (isAuth) {
@@ -16,7 +16,7 @@ const Login = ({ login, isAuth }) => {
   return (
     <div>
       <h1>Login</h1>
-      <LoginForm onSubmit={onSubmit} />
+      <LoginForm captchaUrl={captchaUrl} onSubmit={onSubmit} />
     </div>
   );
 };

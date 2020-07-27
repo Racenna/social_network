@@ -4,7 +4,7 @@ import { Input, createField } from "../../common/FormsControls/FromsControls";
 import { required } from "../../../util/validator/validators";
 import errorStyles from "../../common/FormsControls/FromsControls.module.css";
 
-const LoginForm = ({ handleSubmit, error }) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
   return (
     <form onSubmit={handleSubmit}>
       {createField("Email", "email", [required], Input)}
@@ -19,6 +19,9 @@ const LoginForm = ({ handleSubmit, error }) => {
         { type: "checkbox" },
         "Remember me"
       )}
+      {captchaUrl && <img src={captchaUrl} alt={captchaUrl} />}
+      {captchaUrl &&
+        createField("Symbols from captcha", "captcha", [required], Input)}
       {error && <div className={errorStyles.summeryError}>{error}</div>}
       <div>
         <button>Login</button>

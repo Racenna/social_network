@@ -10,6 +10,7 @@ class LoginContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+  captchaUrl: state.auth.captchaUrl,
   isAuth: state.auth.isAuth,
 });
 

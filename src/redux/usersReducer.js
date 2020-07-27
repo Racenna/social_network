@@ -111,8 +111,8 @@ export const getUsers = (currentPage, pageSize) => {
 const followUnfollowFlow = async (dispatch, userId, apiMethod) => {
   dispatch(toggleIsFollowingInProgress(true, userId));
 
-  const data = await apiMethod(userId);
-  if (data.resultCode === 0) {
+  const response = await apiMethod(userId);
+  if (response.resultCode === 0) {
     dispatch(followAndUnfollow(userId));
   }
   dispatch(toggleIsFollowingInProgress(false, userId));
