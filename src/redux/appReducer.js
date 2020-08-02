@@ -1,9 +1,9 @@
 // import { authAPI } from "../api/api";
 // import { stopSubmit } from "redux-form";
 
-import { getUserData } from "./../redux/authReducer";
+import { getUserData } from './../redux/authReducer';
 
-const SET_INITIALIZED = "app/SET_INITIALIZED";
+const SET_INITIALIZED = 'app/SET_INITIALIZED';
 
 const initialState = {
   initialized: false,

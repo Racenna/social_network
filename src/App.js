@@ -1,39 +1,39 @@
-import React, { Suspense } from "react";
-import { Route, withRouter, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import { compose } from "redux";
-import { initializeApp } from "./redux/appReducer";
+import React, { Suspense } from 'react';
+import { Route, withRouter, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { initializeApp } from './redux/appReducer';
 // Components
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import News from "./components/News/News";
-import Musics from "./components/Musics/Musics";
-import Settings from "./components/Settings/Settings";
-import NavbarContainer from "./components/Navbar/NavbarContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import News from './components/News/News';
+import Musics from './components/Musics/Musics';
+import Settings from './components/Settings/Settings';
+import NavbarContainer from './components/Navbar/NavbarContainer';
+import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
+import HeaderContainer from './components/Header/HeaderContainer';
 // import LoginContainer from "./components/Login/LoginContainer";
-import Preloader from "./components/common/Preloader/Preloader";
+import Preloader from './components/common/Preloader/Preloader';
 // Style
-import "./App.css";
+import './App.css';
 // React.lazy
 const LoginContainer = React.lazy(() =>
-  import("./components/Login/LoginContainer")
+  import('./components/Login/LoginContainer')
 );
 
 class App extends React.Component {
   catchAllUnhandledErrors = (reason, promise) => {
-    console.error("MY ERROR:", reason);
+    console.error('MY ERROR:', reason);
   };
 
   componentDidMount() {
     this.props.initializeApp();
-    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+    window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
   }
 
   componentWillUnmount() {
     window.removeEventListener(
-      "unhandledrejection",
+      'unhandledrejection',
       this.catchAllUnhandledErrors
     );
   }
@@ -43,22 +43,22 @@ class App extends React.Component {
       return <Preloader />;
     } else
       return (
-        <div className="app-wrapper">
+        <div className='app-wrapper'>
           <HeaderContainer />
           <NavbarContainer />
-          <div className="app-wrapper-content">
-            <Route path="/" render={() => <Redirect to="/profile" />} />
+          <div className='app-wrapper-content'>
+            <Route path='/' render={() => <Redirect to='/profile' />} />
             <Route
-              path="/profile/:userId?"
+              path='/profile/:userId?'
               render={() => <ProfileContainer />}
             />
-            <Route path="/dialogs" render={() => <DialogsContainer />} />
-            <Route path="/users" render={() => <UsersContainer />} />
-            <Route path="/news" render={News} />
-            <Route path="/musics" render={Musics} />
-            <Route path="/settings" render={Settings} />
+            <Route path='/dialogs' render={() => <DialogsContainer />} />
+            <Route path='/users' render={() => <UsersContainer />} />
+            <Route path='/news' render={News} />
+            <Route path='/musics' render={Musics} />
+            <Route path='/settings' render={Settings} />
             <Route
-              path="/login"
+              path='/login'
               render={() => (
                 <Suspense fallback={<div>Loading...</div>}>
                   <LoginContainer />

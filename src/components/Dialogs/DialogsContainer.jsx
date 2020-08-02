@@ -1,8 +1,8 @@
-import { compose } from "redux";
-import { connect } from "react-redux";
-import { sendMessage } from "../../redux/dialogsReducer";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import Dialogs from "./Dialogs";
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { sendMessage } from '../../redux/dialogsReducer';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import Dialogs from './Dialogs';
 
 const mapStateToProps = (state) => {
   return {

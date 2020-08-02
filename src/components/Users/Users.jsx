@@ -1,7 +1,7 @@
-import React from "react";
-import Pagination from "../common/Pagination/Pagination";
-import styles from "./Users.module.css";
-import User from "./User/User";
+import React from 'react';
+import Pagination from '../common/Pagination/Pagination';
+import styles from './Users.module.css';
+import User from './User/User';
 
 const Users = (props) => {
   const {

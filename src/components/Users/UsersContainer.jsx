@@ -1,8 +1,8 @@
-import React from "react";
-import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { compose } from "redux";
-import { connect } from "react-redux";
-import { getUsers, follow, unfollow } from "./../../redux/usersReducer";
+import React from 'react';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { getUsers, follow, unfollow } from './../../redux/usersReducer';
 import {
   getProfileUsersSelector,
   getCurrentPageSelector,
@@ -10,9 +10,9 @@ import {
   getTotalUsersCountSelector,
   getIsFetchingSelector,
   getFollowingInProgressSelector,
-} from "../../selectors/usersSelectors";
-import Preloader from "../common/Preloader/Preloader";
-import Users from "./Users";
+} from '../../selectors/usersSelectors';
+import Preloader from '../common/Preloader/Preloader';
+import Users from './Users';
 
 class UsersContainer extends React.Component {
   componentDidMount() {

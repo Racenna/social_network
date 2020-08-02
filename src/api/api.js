@@ -1,11 +1,11 @@
-import * as axios from "axios";
-import env from "./../env";
+import * as axios from 'axios';
+import env from './../env';
 
 const instance = axios.create({
   withCredentials: true,
   baseURL: env.BASE_URL,
   headers: {
-    "API-KEY": env.API_KEY,
+    'API-KEY': env.API_KEY,
   },
 });
 
@@ -62,12 +62,12 @@ export const profileAPI = {
 
   savePhoto(photoFile) {
     const formData = new FormData();
-    formData.append("image", photoFile);
+    formData.append('image', photoFile);
 
     return instance
       .put(`profile/photo`, formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          'Content-Type': 'multipart/form-data',
         },
       })
       .then((response) => response.data);

@@ -1,7 +1,7 @@
-import React from "react";
-import greenTick from "./../../../../assets/svg/green_tick.svg";
-import redCross from "./../../../../assets/svg/red_cross.svg";
-import styles from "./../ProfileInfo.module.css";
+import React from 'react';
+import greenTick from './../../../../assets/svg/green_tick.svg';
+import redCross from './../../../../assets/svg/red_cross.svg';
+import styles from './../ProfileInfo.module.css';
 
 const ProfileDescription = (props) => {
   return (
@@ -14,21 +14,21 @@ const ProfileDescription = (props) => {
       <span>Full name: {props.profile.fullName}</span>
       <span>About Me: {props.profile.aboutMe}</span>
       <span>
-        Looking for a job:{" "}
+        Looking for a job:{' '}
         {props.profile.lookingForAJob ? (
-          <img className={styles.tick_and_cross} src={greenTick} alt="tick" />
+          <img className={styles.tick_and_cross} src={greenTick} alt='tick' />
         ) : (
-          <img className={styles.tick_and_cross} src={redCross} alt="cross" />
+          <img className={styles.tick_and_cross} src={redCross} alt='cross' />
         )}
       </span>
       <span>
-        My professional skills:{" "}
+        My professional skills:{' '}
         {props.profile.lookingForAJobDescription
           ? props.profile.lookingForAJobDescription
-          : "No skills"}
+          : 'No skills'}
       </span>
       <div className={styles.contacts}>
-        Contacts:{" "}
+        Contacts:{' '}
         {Object.keys(props.profile.contacts).map((key) => {
           return (
             <Contacts

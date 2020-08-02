@@ -1,7 +1,7 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import userAvatar from "./../../../assets/images/defaultAvatar.png";
-import styles from "./User.module.css";
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import userAvatar from './../../../assets/images/defaultAvatar.png';
+import styles from './User.module.css';
 
 const User = (props) => {
   const { user, followingInProgress, unfollow, follow } = props;
@@ -11,7 +11,7 @@ const User = (props) => {
         <NavLink to={`/profile/${user.id}`}>
           <img
             src={user.photos.small ? user.photos.small : userAvatar}
-            alt="user_avatar"
+            alt='user_avatar'
           />
         </NavLink>
         {user.followed ? (

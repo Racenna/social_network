@@ -1,11 +1,11 @@
-import { usersAPI } from "./../api/api";
+import { usersAPI } from './../api/api';
 
-const FOLLOW_UNFOLLOW = "users/FOLLOW_UNFOLLOW";
-const SET_USERS = "users/SET_USERS";
-const SET_PAGE = "users/SET_PAGE";
-const SET_TOTAL_COUNT = "users/SET_TOTAL_COUNT";
-const TOGGLE_IS_FETCHING = "users/TOGGLE_IS_FETCHING";
-const TOGGLE_IS_FOLLOWING_PROGRESS = "users/TOGGLE_IS_FOLLOWING_PROGRESS";
+const FOLLOW_UNFOLLOW = 'users/FOLLOW_UNFOLLOW';
+const SET_USERS = 'users/SET_USERS';
+const SET_PAGE = 'users/SET_PAGE';
+const SET_TOTAL_COUNT = 'users/SET_TOTAL_COUNT';
+const TOGGLE_IS_FETCHING = 'users/TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'users/TOGGLE_IS_FOLLOWING_PROGRESS';
 
 const initialState = {
   users: [],

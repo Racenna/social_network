@@ -1,13 +1,13 @@
-import React from "react";
-import { reduxForm } from "redux-form";
+import React from 'react';
+import { reduxForm } from 'redux-form';
 import {
   createField,
   Input,
   Textarea,
-} from "../../../common/FormsControls/FromsControls";
-import { required } from "../../../../util/validator/validators";
-import styles from "./../ProfileInfo.module.css";
-import errorStyles from "../../../common/FormsControls/FromsControls.module.css";
+} from '../../../common/FormsControls/FromsControls';
+import { required } from '../../../../util/validator/validators';
+import styles from './../ProfileInfo.module.css';
+import errorStyles from '../../../common/FormsControls/FromsControls.module.css';
 
 const ProfileDescriptionForm = (props) => {
   return (
@@ -19,28 +19,28 @@ const ProfileDescriptionForm = (props) => {
         <div className={errorStyles.summeryError}>{props.error}</div>
       )}
       <span>
-        Full name: {createField("Full name", "fullName", [required], Input)}
+        Full name: {createField('Full name', 'fullName', [required], Input)}
       </span>
-      <span>About Me: {createField("About me", "aboutMe", [], Textarea)}</span>
+      <span>About Me: {createField('About me', 'aboutMe', [], Textarea)}</span>
       <span>
-        Looking for a job:{" "}
-        {createField("", "lookingForAJob", [], Input, { type: "checkbox" })}
+        Looking for a job:{' '}
+        {createField('', 'lookingForAJob', [], Input, { type: 'checkbox' })}
       </span>
       <span>
-        My professional skills:{" "}
+        My professional skills:{' '}
         {createField(
-          "My professional skills",
-          "lookingForAJobDescription",
+          'My professional skills',
+          'lookingForAJobDescription',
           [],
           Textarea
         )}
       </span>
       <div className={styles.contacts}>
-        Contacts:{" "}
+        Contacts:{' '}
         {Object.keys(props.profile.contacts).map((key) => {
           return (
             <div key={key}>
-              {key}: {createField(key, "contacts." + key, [], Input)}
+              {key}: {createField(key, 'contacts.' + key, [], Input)}
             </div>
           );
         })}
@@ -58,7 +58,7 @@ const ProfileDescriptionForm = (props) => {
 // };
 
 const ProfileDescriptionReduxForm = reduxForm({
-  form: "editProfile",
+  form: 'editProfile',
 })(ProfileDescriptionForm);
 
 export default ProfileDescriptionReduxForm;

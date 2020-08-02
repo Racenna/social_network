@@ -1,6 +1,6 @@
-import React from "react";
-import { Field } from "redux-form";
-import styles from "./FromsControls.module.css";
+import React from 'react';
+import { Field } from 'redux-form';
+import styles from './FromsControls.module.css';
 
 export const Textarea = ({
   input,
@@ -13,7 +13,7 @@ export const Textarea = ({
     <div className={styles.container}>
       <div>
         <textarea
-          className={className + " " + (hasError ? styles.error : "")}
+          className={className + ' ' + (hasError ? styles.error : '')}
           {...input}
           {...props}
         />
@@ -34,7 +34,7 @@ export const Input = ({
     <div className={styles.container}>
       <div>
         <input
-          className={className + " " + (hasError ? styles.error : "")}
+          className={className + ' ' + (hasError ? styles.error : '')}
           {...input}
           {...props}
         />
@@ -50,7 +50,7 @@ export const createField = (
   validators,
   component,
   props = {},
-  text = ""
+  text = ''
 ) => (
   <div>
     <Field

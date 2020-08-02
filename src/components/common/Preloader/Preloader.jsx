@@ -1,10 +1,10 @@
-import React from "react";
-import preloader from "./preloader.svg";
+import React from 'react';
+import preloader from './preloader.svg';
 
 const Preloader = (props) => {
   return (
     <div>
-      <img src={preloader} alt="preloader" />
+      <img src={preloader} alt='preloader' />
     </div>
   );
 };

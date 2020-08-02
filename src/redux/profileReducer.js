@@ -1,21 +1,21 @@
-import { profileAPI, authAPI } from "../api/api";
-import { setUserData } from "./authReducer";
-import { stopSubmit } from "redux-form";
+import { profileAPI, authAPI } from '../api/api';
+import { setUserData } from './authReducer';
+import { stopSubmit } from 'redux-form';
 
-const ADD_POST = "profile/ADD_POST";
-const SET_USER_PROFILE = "profile/SET_USER_PROFILE";
-const SET_STATUS = "profile/SET_STATUS";
-const DELETE_POST = "profile/DELETE_POST";
-const SAVE_PHOTO_SUCCESS = "profile/SAVE_PHOTO_SUCCESS";
+const ADD_POST = 'profile/ADD_POST';
+const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
+const SET_STATUS = 'profile/SET_STATUS';
+const DELETE_POST = 'profile/DELETE_POST';
+const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS';
 
 const initialState = {
   posts: [
-    { id: 1, message: "Hi, how are you?", likeCount: 15 },
+    { id: 1, message: 'Hi, how are you?', likeCount: 15 },
     { id: 2, message: "It's my first post", likeCount: 5 },
-    { id: 3, message: "Cool! ~(^-^~)", likeCount: 25 },
+    { id: 3, message: 'Cool! ~(^-^~)', likeCount: 25 },
   ],
   profile: null,
-  status: "",
+  status: '',
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -133,8 +133,8 @@ export const saveProfile = (profile) => async (dispatch, getState) => {
     dispatch(getProfile(userId));
   } else {
     const message =
-      response.messages.length > 0 ? response.messages[0] : "Some error";
-    dispatch(stopSubmit("editProfile", { _error: message }));
+      response.messages.length > 0 ? response.messages[0] : 'Some error';
+    dispatch(stopSubmit('editProfile', { _error: message }));
     return Promise.reject(message);
     // dispatch(stopSubmit("editProfile", { contacts: { facebook: message } })); //TODO: parse string
   }

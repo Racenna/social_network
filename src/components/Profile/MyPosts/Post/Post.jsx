@@ -1,5 +1,5 @@
-import React from "react";
-import styles from "./Post.module.css";
+import React from 'react';
+import styles from './Post.module.css';
 
 const Post = (props) => {
   return (
@@ -7,8 +7,8 @@ const Post = (props) => {
       <div className={styles.centered}>
         <img
           className={styles.post_image}
-          src="https://vignette.wikia.nocookie.net/discord-wikia/images/5/5e/Default.png/revision/latest/scale-to-width-down/340?cb=20191215094354&path-prefix=ru"
-          alt="Post"
+          src='https://vignette.wikia.nocookie.net/discord-wikia/images/5/5e/Default.png/revision/latest/scale-to-width-down/340?cb=20191215094354&path-prefix=ru'
+          alt='Post'
         />
         {props.message}
       </div>

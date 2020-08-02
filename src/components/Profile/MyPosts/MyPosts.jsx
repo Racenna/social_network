@@ -1,6 +1,6 @@
-import React from "react";
-import Post from "./Post/Post";
-import MyPostsReduxForm from "./MyPostForm/MyPostsForm";
+import React from 'react';
+import Post from './Post/Post';
+import MyPostsReduxForm from './MyPostForm/MyPostsForm';
 
 const MyPosts = (props) => {
   const posts = props.profileData.posts.map((post) => (
@@ -8,7 +8,7 @@ const MyPosts = (props) => {
   ));
 
   const onSubmit = (data) => {
-    if (data.message === undefined || data.message.trim() === "") return;
+    if (data.message === undefined || data.message.trim() === '') return;
     props.addPost(data.post.trim());
   };
 
