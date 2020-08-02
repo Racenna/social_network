@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Route, withRouter } from "react-router-dom";
+import { Route, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { initializeApp } from "./redux/appReducer";
@@ -22,8 +22,20 @@ const LoginContainer = React.lazy(() =>
 );
 
 class App extends React.Component {
+  catchAllUnhandledErrors = (reason, promise) => {
+    console.error("MY ERROR:", reason);
+  };
+
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener(
+      "unhandledrejection",
+      this.catchAllUnhandledErrors
+    );
   }
 
   render() {
@@ -35,6 +47,7 @@ class App extends React.Component {
           <HeaderContainer />
           <NavbarContainer />
           <div className="app-wrapper-content">
+            <Route path="/" render={() => <Redirect to="/profile" />} />
             <Route
               path="/profile/:userId?"
               render={() => <ProfileContainer />}
