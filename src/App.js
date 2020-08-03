@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import { Route, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { initializeApp } from './redux/appReducer';
+import { initializeApp } from './redux/app_reducer/appReducer';
 // Components
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import News from './components/News/News';

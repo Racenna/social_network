@@ -1,4 +1,6 @@
-const initialState = {
+import { SidebarStateType, SidebarActionTypes } from './types';
+
+const initialState: SidebarStateType = {
   friends: {
     title: 'Friends',
     users: [
@@ -22,7 +24,8 @@ const initialState = {
   },
 };
 
-const sidebarReducer = (state = initialState, action) => {
+const sidebarReducer = (state = initialState, action: any) => {
+  // TODO: Change Type any
   switch (action.type) {
     default:
       return state;

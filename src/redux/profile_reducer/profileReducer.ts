@@ -1,9 +1,9 @@
-import { profileAPI, authAPI } from '../api/api';
-import { setUserData } from './authReducer';
+import { profileAPI, authAPI } from '../../api/api';
+import { setUserData } from '../auth_reducer/authReducer';
 import { stopSubmit } from 'redux-form';
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import { RootState } from './redux-store';
+import { RootState } from '../store';
 import {
   ProfileStateType,
   ProfileType,
@@ -16,12 +16,6 @@ import {
   SET_STATUS,
 } from './types';
 
-// const ADD_POST = 'profile/ADD_POST';
-// const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
-// const SET_STATUS = 'profile/SET_STATUS';
-// const DELETE_POST = 'profile/DELETE_POST';
-// const SAVE_PHOTO_SUCCESS = 'profile/SAVE_PHOTO_SUCCESS';
-
 const initialState: ProfileStateType = {
   posts: [
     { id: 1, message: 'Hi, how are you?', likeCount: 15 },
@@ -32,7 +26,10 @@ const initialState: ProfileStateType = {
   status: '',
 };
 
-const profileReducer = (state = initialState, action: ProfileActionTypes) => {
+const profileReducer = (
+  state = initialState,
+  action: ProfileActionTypes
+): ProfileStateType => {
   switch (action.type) {
     case ADD_POST:
       return {
@@ -64,7 +61,8 @@ const profileReducer = (state = initialState, action: ProfileActionTypes) => {
     case SAVE_PHOTO_SUCCESS:
       return {
         ...state,
-        profile: { ...state.profile, photos: action.photos },
+        // profile: { ...state.profile, photos: action.photos },
+        profile: { ...state.profile, photos: action.photos } as ProfileType,
       };
 
     default:
@@ -101,7 +99,7 @@ export const savePhotoSuccess = (photos: PhotosType): ProfileActionTypes => ({
 
 /* Thunk */
 export const getProfile = (
-  userId: number
+  userId: number | null
 ): ThunkAction<void, RootState, unknown, Action<string>> => async (
   dispatch
 ) => {
@@ -113,7 +111,7 @@ export const getProfile = (
       const response = await authAPI.getActiveUser();
       if (response.resultCode === 0) {
         const { id, email, login } = response.data;
-        dispatch(setUserData(id, email, login));
+        dispatch(setUserData(id, email, login, true));
         const data = await profileAPI.getProfile(id);
         dispatch(setUserProfile(data));
       }

@@ -36,14 +36,13 @@ export interface ProfileType {
   photos: PhotosType;
 }
 
-const profileState = {
-  posts: [] as Array<PostType>,
-  profile: null as ProfileType | null,
-  status: '',
-};
-
 // State for profile reducer
-export type ProfileStateType = typeof profileState;
+export interface ProfileStateType {
+  posts: Array<PostType>;
+  profile: ProfileType | null;
+  // profile: ProfileType | null | object; // without object ts throw error compile
+  status: string;
+}
 
 // Actions
 interface AddPostActionType {

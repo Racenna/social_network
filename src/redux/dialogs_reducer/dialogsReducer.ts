@@ -1,12 +1,12 @@
-const SEND_MESSAGE = 'dialogs/SEND_MESSAGE';
+import { DialogsStateType, DialogsActionTypes, SEND_MESSAGE } from './types';
 
-const initialState = {
+const initialState: DialogsStateType = {
   messages: [
-    { id: 1, message: 'Hellooooooooooooooo', status: 'Friend' },
+    { id: 1, message: 'Hello', status: 'Friend' },
     { id: 2, message: 'Hello', status: 'Friend' },
     {
       id: 3,
-      message: 'Hellooooooooooooooooooooooooooo!!!!!!!!!!!!!!!!!!',
+      message: 'Hello!!!!!!!!!!!!!!!!!!',
       status: 'My',
     },
     { id: 4, message: 'Hello', status: 'Friend' },
@@ -46,7 +46,10 @@ const initialState = {
   ],
 };
 
-const dialogsReducer = (state = initialState, action) => {
+const dialogsReducer = (
+  state = initialState,
+  action: DialogsActionTypes
+): DialogsStateType => {
   switch (action.type) {
     case SEND_MESSAGE:
       return {
@@ -54,8 +57,8 @@ const dialogsReducer = (state = initialState, action) => {
         messages: [
           ...state.messages,
           {
-            id: 65,
-            message: action.payload,
+            id: state.messages.length + 1,
+            message: action.message,
             status: 'My', //TODO: owner: user.id
           },
         ],
@@ -66,6 +69,9 @@ const dialogsReducer = (state = initialState, action) => {
   }
 };
 
-export const sendMessage = (payload) => ({ type: SEND_MESSAGE, payload });
+export const sendMessage = (message: string): DialogsActionTypes => ({
+  type: SEND_MESSAGE,
+  message,
+});
 
 export default dialogsReducer;

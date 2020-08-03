@@ -2,7 +2,11 @@ import React from 'react';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { getUsers, follow, unfollow } from './../../redux/usersReducer';
+import {
+  getUsers,
+  follow,
+  unfollow,
+} from '../../redux/users_reducer/usersReducer';
 import {
   getProfileUsersSelector,
   getCurrentPageSelector,
