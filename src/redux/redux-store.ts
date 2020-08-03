@@ -18,10 +18,15 @@ const reducers = combineReducers({
   form: formReducer,
 });
 
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(reducers, composeEnhancer(applyMiddleware(thunk)));
 
-window.store = store;
-
+export type RootState = ReturnType<typeof reducers>;
 export default store;

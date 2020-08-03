@@ -13,7 +13,7 @@ const MyPostsForm = (props) => {
       <Field
         className={styles.input_field}
         component={Textarea}
-        name='post'
+        name='message'
         placeholder='Type text'
         validate={[maxLength100]}
       />
