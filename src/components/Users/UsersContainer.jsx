@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -14,24 +14,25 @@ import {
 import Preloader from '../common/Preloader/Preloader';
 import Users from './Users';
 
-class UsersContainer extends React.Component {
-  componentDidMount() {
-    this.props.getUsers(this.props.currentPage, this.props.pageSize);
-  }
+const UsersContainer = (props) => {
+  const { currentPage, pageSize, getUsers } = props;
 
-  onPageChanged = (page) => {
-    this.props.getUsers(page, this.props.pageSize);
+  const onPageChanged = (page) => {
+    getUsers(page, pageSize);
   };
 
-  render() {
-    return (
-      <>
-        {this.props.isFetching ? <Preloader /> : null}
-        <Users {...this.props} onPageChanged={this.onPageChanged} />
-      </>
-    );
-  }
-}
+  useEffect(() => {
+    console.log('did mount');
+    getUsers(currentPage, pageSize);
+  }, [currentPage, pageSize, getUsers]);
+
+  return (
+    <>
+      {props.isFetching ? <Preloader /> : null}
+      <Users {...props} onPageChanged={onPageChanged} />
+    </>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
