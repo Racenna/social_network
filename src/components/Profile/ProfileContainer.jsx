@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
   getProfile,
@@ -12,31 +12,26 @@ import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import Profile from './Profile';
 
-class ProfileContainer extends React.Component {
-  currentProfile() {
-    const id = this.props.match.params.userId || this.props.myId;
-    this.props.getProfile(id);
-    this.props.getStatus(id);
-  }
+const ProfileContainer = (props) => {
+  const userId = props.match.params.userId;
+  const myId = props.myId;
 
-  componentDidMount() {
-    this.currentProfile();
-  }
+  const currentProfile = () => {
+    const id = props.match.params.userId || props.myId;
+    props.getProfile(id);
+    props.getStatus(id);
+  };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.match.params.userId !== prevProps.match.params.userId) {
-      this.currentProfile();
-    }
-  }
+  useEffect(() => {
+    currentProfile();
+  }, [userId, myId]);
 
-  render() {
-    return (
-      <div>
-        <Profile {...this.props} isOwner={!this.props.match.params.userId} />
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <Profile {...props} isOwner={!props.match.params.userId} />
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   myId: state.auth.id,

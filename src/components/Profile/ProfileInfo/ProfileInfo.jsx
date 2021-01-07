@@ -4,7 +4,7 @@ import ProfileDescription from './ProfileDescription/ProfileDescription';
 import ProfileDescriptionReduxForm from './ProfileDescription/ProfileDescriptionForm';
 import defaultAvatar from './../../../assets/images/defaultAvatar.png';
 import styles from './ProfileInfo.module.css';
-import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
   const [editMode, setEditMode] = useState(false);
@@ -50,7 +50,7 @@ const ProfileInfo = (props) => {
               alt='user avatar'
             />
           </label>
-          <ProfileStatusWithHooks
+          <ProfileStatus
             status={props.status}
             updateStatus={props.updateStatus}
           />
