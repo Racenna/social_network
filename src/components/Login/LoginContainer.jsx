@@ -3,11 +3,9 @@ import { connect } from 'react-redux';
 import { login } from '../../redux/authReducer';
 import Login from './Login';
 
-class LoginContainer extends React.Component {
-  render() {
-    return <Login {...this.props} />;
-  }
-}
+const LoginContainer = (props) => {
+  return <Login {...props} />;
+};
 
 const mapStateToProps = (state) => ({
   captchaUrl: state.auth.captchaUrl,
