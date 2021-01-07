@@ -7,34 +7,6 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 
-// const sum: (num1: number, num2: number) => number = (a, b) => a + b;
-// console.log(sum(10, +"20"));
-// let num3: number | null = null
-// num3 = 19;
-
-// const GET_TASKS = 'profile/GET_TASKS';
-
-// type GetTasksActionType = {
-//   type: typeof GET_TASKS;
-//   id: number;
-// };
-
-// const action1: GetTasksActionType = {
-//   id: 1,
-//   // type: "profile/GET_TASKS"
-//   // or
-//   type: GET_TASKS,
-// };
-// const action2: GetTasksActionType = {
-//   id: 2,
-//   // type: "profile/GET_TASKS"
-//   // or
-//   type: GET_TASKS,
-// };
-
-// console.log(action1);
-// console.log(action2);
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

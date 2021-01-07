@@ -18,6 +18,9 @@ import {
 import Preloader from '../common/Preloader/Preloader';
 import Users from './Users';
 
+//TODO: STEP_1 TypeScript! ClassComponent
+//TODO: STEP_2 Functional component with Hooks
+//TODO: STEP_3 TypeScript FC with Hooks
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.getUsers(this.props.currentPage, this.props.pageSize);

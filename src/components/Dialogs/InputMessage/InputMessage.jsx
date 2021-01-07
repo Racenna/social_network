@@ -5,6 +5,7 @@ const InputMessage = (props) => {
   const onSubmit = (data) => {
     if (data.message === undefined || data.message.trim() === '') return;
     props.sendMessage(data.message.trim());
+    data.message = '';
   };
 
   return <InputMessageForm onSubmit={onSubmit} />;

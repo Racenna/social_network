@@ -2,14 +2,27 @@ import React from 'react';
 import Pagination from '../common/Pagination/Pagination';
 import styles from './Users.module.css';
 import User from './User/User';
+import { UserType } from '../../redux/users_reducer/types';
 
-const Users = (props) => {
+type PropsType = {
+  users: UserType[];
+  currentPage: number;
+  totalUsersCount: number;
+  pageSize: number;
+  followingInProgress: number[];
+  onPageChanged: (page: number) => void;
+  follow: (id: number) => void;
+  unfollow: (id: number) => void;
+};
+
+const Users: React.FC<PropsType> = (props) => {
   const {
+    users,
     currentPage,
-    onPageChanged,
     totalUsersCount,
     pageSize,
     followingInProgress,
+    onPageChanged,
     follow,
     unfollow,
   } = props;
@@ -18,10 +31,10 @@ const Users = (props) => {
       <Pagination
         currentPage={currentPage}
         onPageChanged={onPageChanged}
-        totalUsersCount={totalUsersCount}
+        totalItemsCount={totalUsersCount}
         pageSize={pageSize}
       />
-      {props.users.map((user) => (
+      {users.map((user) => (
         <User
           key={user.id}
           user={user}

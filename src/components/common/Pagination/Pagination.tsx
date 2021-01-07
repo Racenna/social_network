@@ -1,34 +1,41 @@
 import React from 'react';
 import styles from './Pagination.module.css';
 
-const Pagination = ({
+type PropsType = {
+  currentPage: number;
+  totalItemsCount: number;
+  pageSize: number;
+  onPageChanged: (page: number) => void;
+};
+
+const Pagination: React.FC<PropsType> = ({
   currentPage,
-  onPageChanged,
-  totalUsersCount,
+  totalItemsCount,
   pageSize,
+  onPageChanged,
 }) => {
-  const prevuesPage = () => {
+  const prevuesPage = (): void => {
     if (currentPage !== 1) onPageChanged(currentPage - 1);
     return;
   };
 
-  const nextPage = () => {
+  const nextPage = (): void => {
     if (currentPage !== pagesCount) onPageChanged(currentPage + 1);
     return;
   };
 
-  const pagesCount = Math.ceil(totalUsersCount / pageSize);
+  const pagesCount = Math.ceil(totalItemsCount / pageSize);
 
-  const pages = [];
+  const pages: number[] = [];
 
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
 
-  const filteredPage = (page) => {
+  const filteredPage = (page: number): boolean => {
     if (
       page === 1 ||
-      page === totalUsersCount ||
+      page === totalItemsCount ||
       (page >= currentPage - 3 && page <= currentPage + 3) ||
       page === pagesCount
     ) {

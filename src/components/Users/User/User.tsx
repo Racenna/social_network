@@ -2,8 +2,17 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import userAvatar from './../../../assets/images/defaultAvatar.png';
 import styles from './User.module.css';
+import { UserType } from '../../../redux/users_reducer/types';
 
-const User = (props) => {
+type PropsType = {
+  user: UserType;
+  followingInProgress: number[];
+  unfollow: (id: number) => void;
+  follow: (id: number) => void;
+};
+
+//TODO: continue
+const User: React.FC<PropsType> = (props) => {
   const { user, followingInProgress, unfollow, follow } = props;
   return (
     <div className={styles.item}>
