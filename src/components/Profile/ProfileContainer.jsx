@@ -14,17 +14,13 @@ import Profile from './Profile';
 
 const ProfileContainer = (props) => {
   const userId = props.match.params.userId;
-  const myId = props.myId;
-
-  const currentProfile = () => {
-    const id = props.match.params.userId || props.myId;
-    props.getProfile(id);
-    props.getStatus(id);
-  };
+  const { myId, getProfile, getStatus } = props;
 
   useEffect(() => {
-    currentProfile();
-  }, [userId, myId]);
+    const id = userId || myId;
+    getProfile(id);
+    getStatus(id);
+  }, [userId, myId, getProfile, getStatus]);
 
   return (
     <div>

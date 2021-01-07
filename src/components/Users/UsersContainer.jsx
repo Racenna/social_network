@@ -22,7 +22,6 @@ const UsersContainer = (props) => {
   };
 
   useEffect(() => {
-    console.log('did mount');
     getUsers(currentPage, pageSize);
   }, [currentPage, pageSize, getUsers]);
 
