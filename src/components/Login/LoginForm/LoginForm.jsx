@@ -1,8 +1,8 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import { Input, createField } from '../../common/FormsControls/FromsControls';
+import { Input, createField } from '../../common/FormsControls/FormsControls';
 import { required } from '../../../util/validator/validators';
-import errorStyles from '../../common/FormsControls/FromsControls.module.css';
+import errorStyles from '../../common/FormsControls/FormsControls.module.css';
 
 const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
   return (

@@ -3,7 +3,7 @@ import styles from './MyPostsForm.module.css';
 import send from './../../../../assets/svg/send.svg';
 import { maxLengthCreator } from './../../../../util/validator/validators';
 import { reduxForm, Field } from 'redux-form';
-import { Textarea } from '../../../common/FormsControls/FromsControls';
+import { Textarea } from '../../../common/FormsControls/FormsControls';
 
 const maxLength100 = maxLengthCreator(100);
 

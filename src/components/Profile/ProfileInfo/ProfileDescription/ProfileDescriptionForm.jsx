@@ -4,10 +4,10 @@ import {
   createField,
   Input,
   Textarea,
-} from '../../../common/FormsControls/FromsControls';
+} from '../../../common/FormsControls/FormsControls';
 import { required } from '../../../../util/validator/validators';
 import styles from './../ProfileInfo.module.css';
-import errorStyles from '../../../common/FormsControls/FromsControls.module.css';
+import errorStyles from '../../../common/FormsControls/FormsControls.module.css';
 
 const ProfileDescriptionForm = (props) => {
   return (

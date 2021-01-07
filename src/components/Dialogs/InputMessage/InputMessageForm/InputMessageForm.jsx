@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { maxLengthCreator } from '../../../../util/validator/validators';
-import { Textarea } from '../../../common/FormsControls/FromsControls';
+import { Textarea } from '../../../common/FormsControls/FormsControls';
 import send from './../../../../assets/svg/send.svg';
 import styles from './InputMessageForm.module.css';
 
