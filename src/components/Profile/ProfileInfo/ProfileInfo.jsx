@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { savePhoto, saveProfile } from '../../../redux/profileReducer';
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileDescription from './ProfileDescription/ProfileDescription';
@@ -8,11 +8,8 @@ import defaultAvatar from './../../../assets/images/defaultAvatar.png';
 import styles from './ProfileInfo.module.css';
 import ProfileStatus from './ProfileStatus';
 
-const ProfileInfo = ({ isOwner }) => {
+const ProfileInfo = ({ isOwner, profile, status }) => {
   const [editMode, setEditMode] = useState(false);
-
-  const profile = useSelector((state) => state.profileData.profile);
-  const status = useSelector((state) => state.profileData.status);
 
   const dispatch = useDispatch();
 

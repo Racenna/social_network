@@ -1,26 +1,34 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProfile, getStatus } from '../../redux/profileReducer';
+import {
+  ownerIdSelector,
+  profileSelector,
+  statusSelector,
+} from '../../selectors/profileSelectors';
 import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 import Profile from './Profile';
 
 const ProfileContainer = (props) => {
-  const myId = useSelector((state) => state.auth.id);
+  const ownerId = useSelector((state) => ownerIdSelector(state));
+  const profile = useSelector((state) => profileSelector(state));
+  const status = useSelector((state) => statusSelector(state));
+
   const dispatch = useDispatch();
 
   const userId = props.match.params.userId;
 
   useEffect(() => {
-    const id = userId || myId;
+    const id = userId || ownerId;
     dispatch(getProfile(id));
     dispatch(getStatus(id));
-  }, [userId, myId, dispatch]);
+  }, [userId, ownerId, dispatch]);
 
   return (
     <div>
-      <Profile isOwner={!userId} />
+      <Profile isOwner={!userId} profile={profile} status={status} />
     </div>
   );
 };

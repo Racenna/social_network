@@ -8,7 +8,7 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import News from './components/News/News';
 import Musics from './components/Musics/Musics';
 import Settings from './components/Settings/Settings';
-import NavbarContainer from './components/Navbar/NavbarContainer';
+import Navbar from './components/Navbar/Navbar';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Header from './components/Header/Header';
@@ -42,7 +42,7 @@ const App = (props) => {
     return (
       <div className='app-wrapper'>
         <Header />
-        <NavbarContainer />
+        <Navbar />
         <div className='app-wrapper-content'>
           <Route path='/' render={() => <Redirect to='/profile' />} />
           <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
