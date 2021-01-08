@@ -11,7 +11,7 @@ import Settings from './components/Settings/Settings';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
-import HeaderContainer from './components/Header/HeaderContainer';
+import Header from './components/Header/Header';
 // import LoginContainer from "./components/Login/LoginContainer";
 import Preloader from './components/common/Preloader/Preloader';
 // Style
@@ -41,7 +41,7 @@ const App = (props) => {
   } else {
     return (
       <div className='app-wrapper'>
-        <HeaderContainer />
+        <Header />
         <NavbarContainer />
         <div className='app-wrapper-content'>
           <Route path='/' render={() => <Redirect to='/profile' />} />
