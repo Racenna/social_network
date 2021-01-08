@@ -1,8 +1,9 @@
 import React, { Suspense, useEffect } from 'react';
 import { Route, withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './redux/appReducer';
+import { initializedSelector } from './selectors/appSelectors';
 // Components
 import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
@@ -18,20 +19,22 @@ import './App.css';
 // React.lazy
 const Login = React.lazy(() => import('./components/Login/Login'));
 
-const App = (props) => {
-  const { initialized, initializeApp } = props;
+const App = () => {
+  const initialized = useSelector(initializedSelector);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     function catchAllUnhandledErrors(reason, promise) {
       console.error('My error:', reason);
     }
 
-    initializeApp();
+    dispatch(initializeApp());
     window.addEventListener('unhandledrejection', catchAllUnhandledErrors);
     return function cleanup() {
       window.removeEventListener('unhandledrejection', catchAllUnhandledErrors);
     };
-  }, [initializeApp]);
+  }, [dispatch]);
 
   if (!initialized) {
     return <Preloader />;
@@ -62,11 +65,4 @@ const App = (props) => {
   }
 };
 
-const mapStateToProps = (state) => ({
-  initialized: state.app.initialized,
-});
-
-export default compose(
-  withRouter,
-  connect(mapStateToProps, { initializeApp })
-)(App);
+export default compose(withRouter)(App);
