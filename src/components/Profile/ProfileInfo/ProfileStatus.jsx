@@ -4,7 +4,6 @@ import { updateStatus } from '../../../redux/profileReducer';
 
 const ProfileStatus = (props) => {
   const [editMode, setEditMode] = useState(false);
-  //! Убрать
   const [status, setStatus] = useState(props.status);
 
   const dispatch = useDispatch();

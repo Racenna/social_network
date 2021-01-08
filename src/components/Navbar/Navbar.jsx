@@ -6,7 +6,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Navigation from './Navigation/Navigation';
 
 const Navbar = () => {
-  const sidebarData = useSelector((state) => sidebarDataSelector(state));
+  const sidebarData = useSelector(sidebarDataSelector);
 
   return (
     <nav className={styles.nav}>

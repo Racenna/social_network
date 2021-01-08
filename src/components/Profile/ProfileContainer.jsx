@@ -12,9 +12,9 @@ import { compose } from 'redux';
 import Profile from './Profile';
 
 const ProfileContainer = (props) => {
-  const ownerId = useSelector((state) => ownerIdSelector(state));
-  const profile = useSelector((state) => profileSelector(state));
-  const status = useSelector((state) => statusSelector(state));
+  const ownerId = useSelector(ownerIdSelector);
+  const profile = useSelector(profileSelector);
+  const status = useSelector(statusSelector);
 
   const dispatch = useDispatch();
 

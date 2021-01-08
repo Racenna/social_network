@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './redux/appReducer';
 // Components
-import DialogsContainer from './components/Dialogs/DialogsContainer';
+import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Musics from './components/Musics/Musics';
 import Settings from './components/Settings/Settings';
@@ -46,7 +46,7 @@ const App = (props) => {
         <div className='app-wrapper-content'>
           <Route path='/' render={() => <Redirect to='/profile' />} />
           <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-          <Route path='/dialogs' render={() => <DialogsContainer />} />
+          <Route path='/dialogs' render={() => <Dialogs />} />
           <Route path='/users' render={() => <UsersContainer />} />
           <Route path='/news' render={News} />
           <Route path='/musics' render={Musics} />
