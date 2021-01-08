@@ -12,14 +12,11 @@ import Navbar from './components/Navbar/Navbar';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import Header from './components/Header/Header';
-// import LoginContainer from "./components/Login/LoginContainer";
 import Preloader from './components/common/Preloader/Preloader';
 // Style
 import './App.css';
 // React.lazy
-const LoginContainer = React.lazy(() =>
-  import('./components/Login/LoginContainer')
-);
+const Login = React.lazy(() => import('./components/Login/Login'));
 
 const App = (props) => {
   const { initialized, initializeApp } = props;
@@ -55,7 +52,7 @@ const App = (props) => {
             path='/login'
             render={() => (
               <Suspense fallback={<div>Loading...</div>}>
-                <LoginContainer />
+                <Login />
               </Suspense>
             )}
           />
