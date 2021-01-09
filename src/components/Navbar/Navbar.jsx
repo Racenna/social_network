@@ -1,13 +1,17 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { sidebarDataSelector } from '../../selectors/navbarSelectors';
 import styles from './Navbar.module.css';
 import Sidebar from './Sidebar/Sidebar';
 import Navigation from './Navigation/Navigation';
 
-const Navbar = (props) => {
+const Navbar = () => {
+  const sidebarData = useSelector(sidebarDataSelector);
+
   return (
     <nav className={styles.nav}>
       <Navigation />
-      <Sidebar friends={props.sidebarData.friends} />
+      <Sidebar friends={sidebarData.friends} />
     </nav>
   );
 };

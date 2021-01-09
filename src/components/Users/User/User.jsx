@@ -1,10 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { follow, unfollow } from '../../../redux/usersReducer';
 import { NavLink } from 'react-router-dom';
 import userAvatar from './../../../assets/images/defaultAvatar.png';
 import styles from './User.module.css';
 
-const User = (props) => {
-  const { user, followingInProgress, unfollow, follow } = props;
+const User = ({ user, followingInProgress }) => {
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.item}>
       <div className={styles.centered}>
@@ -19,7 +22,7 @@ const User = (props) => {
             className={styles.unfollow}
             disabled={followingInProgress.some((id) => id === user.id)}
             onClick={() => {
-              unfollow(user.id);
+              dispatch(unfollow(user.id));
             }}
           >
             Unfollow
@@ -29,7 +32,7 @@ const User = (props) => {
             className={styles.follow}
             disabled={followingInProgress.some((id) => id === user.id)}
             onClick={() => {
-              follow(user.id);
+              dispatch(follow(user.id));
             }}
           >
             Follow

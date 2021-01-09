@@ -1,11 +1,17 @@
 import React from 'react';
+import { compose } from 'redux';
+import { useSelector } from 'react-redux';
+import { dialogsDataSelector } from '../../selectors/dialogsSelectors';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import DialogsItem from './DialogsItem/DialogsItem';
 import MessageItem from './MessageItem/MessageItem';
 import InputMessage from './InputMessage/InputMessage';
 import styles from './Dialogs.module.css';
 
-const Dialogs = (props) => {
-  const dialogsItems = props.dialogsData.dialogs.map((dialog) => (
+const Dialogs = () => {
+  const dialogsData = useSelector(dialogsDataSelector);
+
+  const dialogsItems = dialogsData.dialogs.map((dialog) => (
     <DialogsItem
       key={dialog.id}
       id={dialog.id}
@@ -14,7 +20,7 @@ const Dialogs = (props) => {
     />
   ));
 
-  const messageItems = props.dialogsData.messages.map((message) => (
+  const messageItems = dialogsData.messages.map((message) => (
     <MessageItem
       key={message.id}
       message={message.message}
@@ -26,9 +32,9 @@ const Dialogs = (props) => {
     <div className={styles.dialogs}>
       <div className={styles.dialogs_items}>{dialogsItems}</div>
       <div className={styles.message_items}>{messageItems}</div>
-      <InputMessage sendMessage={props.sendMessage} />
+      <InputMessage />
     </div>
   );
 };
 
-export default Dialogs;
+export default compose(withAuthRedirect)(Dialogs);

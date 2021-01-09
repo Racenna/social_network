@@ -1,52 +1,52 @@
 import React, { Suspense, useEffect } from 'react';
 import { Route, withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import { initializeApp } from './redux/appReducer';
+import { initializedSelector } from './selectors/appSelectors';
 // Components
-import DialogsContainer from './components/Dialogs/DialogsContainer';
+import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Musics from './components/Musics/Musics';
 import Settings from './components/Settings/Settings';
-import NavbarContainer from './components/Navbar/NavbarContainer';
+import Navbar from './components/Navbar/Navbar';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
-import HeaderContainer from './components/Header/HeaderContainer';
-// import LoginContainer from "./components/Login/LoginContainer";
+import Header from './components/Header/Header';
 import Preloader from './components/common/Preloader/Preloader';
 // Style
 import './App.css';
 // React.lazy
-const LoginContainer = React.lazy(() =>
-  import('./components/Login/LoginContainer')
-);
+const Login = React.lazy(() => import('./components/Login/Login'));
 
-const App = (props) => {
-  const { initialized, initializeApp } = props;
+const App = () => {
+  const initialized = useSelector(initializedSelector);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     function catchAllUnhandledErrors(reason, promise) {
       console.error('My error:', reason);
     }
 
-    initializeApp();
+    dispatch(initializeApp());
     window.addEventListener('unhandledrejection', catchAllUnhandledErrors);
     return function cleanup() {
       window.removeEventListener('unhandledrejection', catchAllUnhandledErrors);
     };
-  }, [initializeApp]);
+  }, [dispatch]);
 
   if (!initialized) {
     return <Preloader />;
   } else {
     return (
       <div className='app-wrapper'>
-        <HeaderContainer />
-        <NavbarContainer />
+        <Header />
+        <Navbar />
         <div className='app-wrapper-content'>
           <Route path='/' render={() => <Redirect to='/profile' />} />
           <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-          <Route path='/dialogs' render={() => <DialogsContainer />} />
+          <Route path='/dialogs' render={() => <Dialogs />} />
           <Route path='/users' render={() => <UsersContainer />} />
           <Route path='/news' render={News} />
           <Route path='/musics' render={Musics} />
@@ -55,7 +55,7 @@ const App = (props) => {
             path='/login'
             render={() => (
               <Suspense fallback={<div>Loading...</div>}>
-                <LoginContainer />
+                <Login />
               </Suspense>
             )}
           />
@@ -65,11 +65,4 @@ const App = (props) => {
   }
 };
 
-const mapStateToProps = (state) => ({
-  initialized: state.app.initialized,
-});
-
-export default compose(
-  withRouter,
-  connect(mapStateToProps, { initializeApp })
-)(App);
+export default compose(withRouter)(App);
