@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { isAuthSelector } from '../../selectors/headerSelectors';
 import { captchaUrlSelector } from '../../selectors/loginSelectors';
 import { login } from '../../redux/authReducer';
-
+import { AuthContext } from '../../App';
 import LoginForm from './LoginForm/LoginForm';
 // import styles from "./Login.module.css";
 
 const Login = () => {
-  const isAuth = useSelector(isAuthSelector);
+  const isAuth = useContext(AuthContext);
   const captchaUrl = useSelector(captchaUrlSelector);
 
   const dispatch = useDispatch();

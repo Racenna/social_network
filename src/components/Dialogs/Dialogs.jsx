@@ -1,8 +1,6 @@
 import React from 'react';
-import { compose } from 'redux';
 import { useSelector } from 'react-redux';
 import { dialogsDataSelector } from '../../selectors/dialogsSelectors';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import DialogsItem from './DialogsItem/DialogsItem';
 import MessageItem from './MessageItem/MessageItem';
 import InputMessage from './InputMessage/InputMessage';
@@ -37,4 +35,4 @@ const Dialogs = () => {
   );
 };
 
-export default compose(withAuthRedirect)(Dialogs);
+export default Dialogs;

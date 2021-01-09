@@ -1,16 +1,17 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/authReducer';
-import { isAuthSelector, loginSelector } from '../../selectors/headerSelectors';
+import { loginSelector } from '../../selectors/headerSelectors';
 import logo from './../../assets/svg/logo.svg';
 import styles from './Header.module.css';
+import { AuthContext } from '../../App';
 
 const Header = () => {
-  const isAuth = useSelector(isAuthSelector);
-  const login = useSelector(loginSelector);
-
   const dispatch = useDispatch();
+  const isAuth = useContext(AuthContext);
+
+  const login = useSelector(loginSelector);
 
   return (
     <header className={styles.header}>
@@ -19,9 +20,9 @@ const Header = () => {
         {isAuth ? (
           <div>
             <span>{login}</span>
-            <NavLink to='/login'>
+            <Link to='/login'>
               <button onClick={() => dispatch(logout())}>Log out</button>
-            </NavLink>
+            </Link>
           </div>
         ) : (
           <NavLink to='/login'>
