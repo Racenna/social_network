@@ -1,16 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/authReducer';
-import { loginSelector } from '../../selectors/headerSelectors';
+import { isAuthSelector, loginSelector } from '../../selectors/headerSelectors';
 import logo from './../../assets/svg/logo.svg';
 import styles from './Header.module.css';
-import { AuthContext } from '../../App';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const isAuth = useContext(AuthContext);
 
+  const isAuth = useSelector(isAuthSelector);
   const login = useSelector(loginSelector);
 
   return (

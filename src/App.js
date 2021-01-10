@@ -15,12 +15,8 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import Header from './components/Header/Header';
 import Preloader from './components/common/Preloader/Preloader';
 import PrivateRoute from './components/common/PrivateRoute/PrivateRoute';
-// Style
 import './App.css';
-// React.lazy
 const Login = React.lazy(() => import('./components/Login/Login'));
-
-export const AuthContext = createContext();
 
 const App = () => {
   const initialized = useSelector(initializedSelector);
@@ -44,40 +40,32 @@ const App = () => {
     return <Preloader />;
   } else {
     return (
-      <AuthContext.Provider value={isAuth}>
-        <Router>
-          <div className='app-wrapper'>
-            <Header />
-            <Navbar />
-            <div className='app-wrapper-content'>
-              <Route path='/' exact render={() => <Redirect to='/profile' />} />
-              {/* <Route 
-                path='/profile/:userId?' 
-                render={() => <ProfileContainer />} 
-              /> */}
-              <PrivateRoute
-                path='/profile/:userId?'
-                component={<ProfileContainer />}
-              />
-              {/* <Route path='/dialogs' render={() => <Dialogs />} /> */}
-              <PrivateRoute path='/dialogs' component={<Dialogs />} />
-              {/* <Route path='/users' render={() => <UsersContainer />} /> */}
-              <PrivateRoute path='/users' component={<UsersContainer />} />
-              <Route path='/news' render={News} />
-              <Route path='/musics' render={Musics} />
-              <Route path='/settings' render={Settings} />
-              <Route
-                path='/login'
-                render={() => (
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <Login />
-                  </Suspense>
-                )}
-              />
-            </div>
+      <Router>
+        <div className='app-wrapper'>
+          <Header />
+          <Navbar />
+          <div className='app-wrapper-content'>
+            <Route path='/' exact render={() => <Redirect to='/profile' />} />
+            <PrivateRoute
+              path='/profile/:userId?'
+              component={<ProfileContainer />}
+            />
+            <PrivateRoute path='/dialogs' component={<Dialogs />} />
+            <PrivateRoute path='/users' component={<UsersContainer />} />
+            <Route path='/news' render={News} />
+            <Route path='/musics' render={Musics} />
+            <Route path='/settings' render={Settings} />
+            <Route
+              path='/login'
+              render={() => (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <Login />
+                </Suspense>
+              )}
+            />
           </div>
-        </Router>
-      </AuthContext.Provider>
+        </div>
+      </Router>
     );
   }
 };

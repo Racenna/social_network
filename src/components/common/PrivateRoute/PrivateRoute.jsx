@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { AuthContext } from '../../../App';
+import { isAuthSelector } from '../../../selectors/headerSelectors';
 
-// const PrivateRoute = ({ children, ...rest }) => {
 const PrivateRoute = ({ component, ...rest }) => {
-  const isAuth = useContext(AuthContext);
+  const isAuth = useSelector(isAuthSelector);
 
   return (
     <Route
