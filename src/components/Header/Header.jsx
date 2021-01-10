@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/authReducer';
 import { loginSelector } from '../../selectors/headerSelectors';
@@ -20,9 +20,9 @@ const Header = () => {
         {isAuth ? (
           <div>
             <span>{login}</span>
-            <Link to='/login'>
+            <NavLink to='/login'>
               <button onClick={() => dispatch(logout())}>Log out</button>
-            </Link>
+            </NavLink>
           </div>
         ) : (
           <NavLink to='/login'>
