@@ -6,9 +6,7 @@ import {
   profileSelector,
   statusSelector,
 } from '../../selectors/profileSelectors';
-import { withRouter } from 'react-router-dom';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
-import { compose } from 'redux';
+import { useParams } from 'react-router-dom';
 import Profile from './Profile';
 
 const ProfileContainer = (props) => {
@@ -18,7 +16,7 @@ const ProfileContainer = (props) => {
 
   const dispatch = useDispatch();
 
-  const userId = props.match.params.userId;
+  const { userId } = useParams();
 
   useEffect(() => {
     const id = userId || ownerId;
@@ -33,4 +31,4 @@ const ProfileContainer = (props) => {
   );
 };
 
-export default compose(withRouter, withAuthRedirect)(ProfileContainer);
+export default ProfileContainer;

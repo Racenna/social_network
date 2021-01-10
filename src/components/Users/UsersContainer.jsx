@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { compose } from 'redux';
 import { useSelector, useDispatch } from 'react-redux';
 import { getUsers } from './../../redux/usersReducer';
 import {
@@ -10,7 +9,6 @@ import {
   getIsFetchingSelector,
   getFollowingInProgressSelector,
 } from '../../selectors/usersSelectors';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import Preloader from '../common/Preloader/Preloader';
 import Users from './Users';
 
@@ -47,4 +45,4 @@ const UsersContainer = () => {
   );
 };
 
-export default compose(withAuthRedirect)(UsersContainer);
+export default UsersContainer;

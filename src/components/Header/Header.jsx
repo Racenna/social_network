@@ -7,10 +7,10 @@ import logo from './../../assets/svg/logo.svg';
 import styles from './Header.module.css';
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   const isAuth = useSelector(isAuthSelector);
   const login = useSelector(loginSelector);
-
-  const dispatch = useDispatch();
 
   return (
     <header className={styles.header}>
