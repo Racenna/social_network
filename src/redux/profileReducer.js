@@ -1,6 +1,6 @@
 import { profileAPI, authAPI } from '../api/api';
 import { setUserData } from './authReducer';
-import { stopSubmit } from 'redux-form';
+// import { stopSubmit } from 'redux-form';
 
 const ADD_POST = 'profile/ADD_POST';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
@@ -132,11 +132,12 @@ export const saveProfile = (profile) => async (dispatch, getState) => {
   if (response.resultCode === 0) {
     dispatch(getProfile(userId));
   } else {
-    const message =
-      response.messages.length > 0 ? response.messages[0] : 'Some error';
-    dispatch(stopSubmit('editProfile', { _error: message }));
-    return Promise.reject(message);
-    // dispatch(stopSubmit("editProfile", { contacts: { facebook: message } })); //TODO: parse string
+    // const message =
+    //   response.messages.length > 0 ? response.messages[0] : 'Some error';
+    // return message;
+    // dispatch(stopSubmit('editProfile', { _error: message }));
+    // return Promise.reject(message);
+    // dispatch(stopSubmit("editProfile", { contacts: { facebook: message } }));
   }
 };
 

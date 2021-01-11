@@ -17,10 +17,33 @@
 }
 
 .user_description {
-  border-left: 0.5px solid #fff;
+  border-left: 0.5px solid #666666;
   padding-left: 1rem;
   display: flex;
   flex-direction: column;
+  width: 500px;
+}
+
+.user_description div {
+  margin: 0.4rem 1rem;
+}
+
+.user_description .edit_button {
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  border-radius: 1rem;
+  font-size: 15px;
+  line-height: 25px;
+  width: 80px;
+  height: 25px;
+  color: white;
+  background-color: #666666;
+  transition: 0.3s;
+}
+
+.user_description .edit_button:hover {
+  background-color: #595959;
 }
 
 .tick_and_cross {
@@ -29,4 +52,37 @@
 
 .contacts div {
   margin-left: 1rem;
+}
+
+.edit_contacts div {
+  height: 30px;
+  line-height: 30px;
+  display: flex;
+  margin: 0.4rem 1rem;
+  justify-content: space-between;
+}
+
+.user_description .text_input {
+  width: 40%;
+  height: inherit;
+  padding: 0px 20px;
+  box-sizing: border-box;
+  border: 2px solid #666666;
+  border-radius: 1rem;
+  background-color: #666666;
+  color: #ffffff;
+  resize: none;
+  margin-left: 1rem;
+}
+
+.edit_contacts .text_input {
+  width: 70%;
+  height: inherit;
+  padding: 0px 20px;
+  box-sizing: border-box;
+  border: 2px solid #666666;
+  border-radius: 1rem;
+  background-color: #666666;
+  color: #ffffff;
+  resize: none;
 }

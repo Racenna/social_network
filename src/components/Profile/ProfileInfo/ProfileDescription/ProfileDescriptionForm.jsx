@@ -1,64 +1,85 @@
 import React from 'react';
-import { reduxForm } from 'redux-form';
-import {
-  createField,
-  Input,
-  Textarea,
-} from '../../../common/FormsControls/FormsControls';
-import { required } from '../../../../util/validator/validators';
+import { Form, Formik, Field, ErrorMessage } from 'formik';
 import styles from './../ProfileInfo.module.css';
-import errorStyles from '../../../common/FormsControls/FormsControls.module.css';
-
-const ProfileDescriptionForm = (props) => {
+import { profileDescriptionValidate } from '../../../../util/validator/validators';
+const ProfileDescriptionForm = ({ handleSubmit, profile }) => {
   return (
-    <form onSubmit={props.handleSubmit} className={styles.user_description}>
-      <div>
-        <button onClick={() => {}}>save</button>
-      </div>
-      {props.error && (
-        <div className={errorStyles.summeryError}>{props.error}</div>
-      )}
-      <span>
-        Full name: {createField('Full name', 'fullName', [required], Input)}
-      </span>
-      <span>About Me: {createField('About me', 'aboutMe', [], Textarea)}</span>
-      <span>
-        Looking for a job:{' '}
-        {createField('', 'lookingForAJob', [], Input, { type: 'checkbox' })}
-      </span>
-      <span>
-        My professional skills:{' '}
-        {createField(
-          'My professional skills',
-          'lookingForAJobDescription',
-          [],
-          Textarea
-        )}
-      </span>
-      <div className={styles.contacts}>
-        Contacts:{' '}
-        {Object.keys(props.profile.contacts).map((key) => {
-          return (
-            <div key={key}>
-              {key}: {createField(key, 'contacts.' + key, [], Input)}
+    <Formik
+      initialValues={{
+        ...profile,
+        contacts: { ...profile.contacts },
+      }}
+      validate={profileDescriptionValidate}
+      onSubmit={(values) => {
+        handleSubmit(values);
+      }}
+    >
+      {({ values }) => {
+        return (
+          <Form>
+            <div className={styles.user_description}>
+              <div>
+                <button className={styles.edit_button} type='submit'>
+                  Save
+                </button>
+              </div>
+              <div>
+                <label htmlFor='fullName'>Full name:</label>
+                <Field
+                  className={styles.text_input}
+                  name='fullName'
+                  type='text'
+                />
+                <ErrorMessage name='fullName' component='div' />
+              </div>
+              <div>
+                <label htmlFor='aboutMe'>About Me:</label>
+                <Field
+                  className={styles.text_input}
+                  name='aboutMe'
+                  type='text'
+                />
+                <ErrorMessage name='aboutMe' component='div' />
+              </div>
+              <div>
+                <label htmlFor='lookingForAJob'>Looking for a job:</label>
+                <Field name='lookingForAJob' type='checkbox' />
+              </div>
+              <div>
+                <label htmlFor='lookingForAJobDescription'>
+                  My professional skills:
+                </label>
+                <Field
+                  className={styles.text_input}
+                  name='lookingForAJobDescription'
+                  type='text'
+                />
+                <ErrorMessage
+                  name='lookingForAJobDescription'
+                  component='div'
+                />
+              </div>
+              <div className={styles.edit_contacts}>
+                <span>Contacts:</span>
+                {Object.keys(values.contacts).map((key) => {
+                  return (
+                    <div key={key}>
+                      <label htmlFor={`contacts.${key}`}>{key}:</label>
+                      <Field
+                        className={styles.text_input}
+                        name={`contacts.${key}`}
+                        type='text'
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          );
-        })}
-      </div>
-    </form>
+          </Form>
+        );
+      }}
+    </Formik>
   );
 };
 
-// const Contacts = ({ contactKey, contactValue }) => {
-//   return (
-//     <div>
-//       {contactKey}: {contactValue}
-//     </div>
-//   );
-// };
-
-const ProfileDescriptionReduxForm = reduxForm({
-  form: 'editProfile',
-})(ProfileDescriptionForm);
-
-export default ProfileDescriptionReduxForm;
+export default ProfileDescriptionForm;

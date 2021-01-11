@@ -19,7 +19,12 @@ const MyPostsForm = ({ handleSubmit }) => {
     >
       <Form>
         <div className={styles.input_post}>
-          <Field className={styles.input_field} name='post' type='textarea' />
+          <Field
+            className={styles.input_field}
+            name='post'
+            type='textarea'
+            placeholder='type text'
+          />
           <button type='submit'>
             <img src={send} alt='Send' />
           </button>
