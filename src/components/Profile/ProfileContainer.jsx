@@ -9,7 +9,7 @@ import {
 import { useParams } from 'react-router-dom';
 import Profile from './Profile';
 
-const ProfileContainer = (props) => {
+const ProfileContainer = () => {
   const ownerId = useSelector(ownerIdSelector);
   const profile = useSelector(profileSelector);
   const status = useSelector(statusSelector);
