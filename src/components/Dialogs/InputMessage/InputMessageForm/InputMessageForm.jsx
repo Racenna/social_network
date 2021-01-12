@@ -1,29 +1,49 @@
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
-import { maxLengthCreator } from '../../../../util/validator/validators';
-import { Textarea } from '../../../common/FormsControls/FormsControls';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import send from './../../../../assets/svg/send.svg';
 import styles from './InputMessageForm.module.css';
 
-const maxLength100 = maxLengthCreator(100);
+const messageSchemaValidate = Yup.object().shape({
+  message: Yup.string()
+    .min(1, 'Must be 1 character or more')
+    .max(100, 'Must be 100 character or less')
+    .required('Required')
+    .trim(),
+});
 
-const InputMessageForm = (props) => {
+const InputMessageForm = ({ handleSubmit }) => {
+  const formik = useFormik({
+    initialValues: {
+      message: '',
+    },
+    validationSchema: messageSchemaValidate,
+    onSubmit: (values, { resetForm }) => {
+      handleSubmit(values);
+      resetForm();
+    },
+  });
+
   return (
-    <form className={styles.input_massage} onSubmit={props.handleSubmit}>
-      <Field
-        className={styles.input_form}
-        component={Textarea}
-        name='message'
-        placeholder='Type text'
-        validate={[maxLength100]}
-      />
-      <button>
-        <img src={send} alt='send svg' />
-      </button>
-    </form>
+    <div>
+      <form className={styles.input_message} onSubmit={formik.handleSubmit}>
+        <input
+          className={styles.input_form}
+          name='message'
+          type='textarea'
+          onChange={formik.handleChange}
+          value={formik.values.message}
+          placeholder='Type text'
+        />
+        <button type='submit'>
+          <img src={send} alt='Send' />
+        </button>
+      </form>
+      {formik.errors.message ? (
+        <div className={styles.error_message}>{formik.errors.message}</div>
+      ) : null}
+    </div>
   );
 };
 
-const InputMessageReduxForm = reduxForm({ form: 'dialog' })(InputMessageForm);
-
-export default InputMessageReduxForm;
+export default InputMessageForm;
