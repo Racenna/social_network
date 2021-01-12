@@ -1,19 +1,22 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { captchaUrlSelector } from '../../selectors/loginSelectors';
+import {
+  captchaUrlSelector,
+  errorMessageSelector,
+} from '../../selectors/loginSelectors';
 import { login } from '../../redux/authReducer';
 import LoginForm from './LoginForm/LoginForm';
 import { isAuthSelector } from '../../selectors/headerSelectors';
-// import styles from "./Login.module.css";
 
 const Login = () => {
   const isAuth = useSelector(isAuthSelector);
   const captchaUrl = useSelector(captchaUrlSelector);
+  const errorMessage = useSelector(errorMessageSelector);
 
   const dispatch = useDispatch();
 
-  const onSubmit = (data) => {
+  const handleSubmit = (data) => {
     const { email, password, rememberMe, captcha } = data;
     dispatch(login(email, password, rememberMe, captcha));
   };
@@ -25,7 +28,11 @@ const Login = () => {
   return (
     <div>
       <h1>Login</h1>
-      <LoginForm captchaUrl={captchaUrl} onSubmit={onSubmit} />
+      <LoginForm
+        captchaUrl={captchaUrl}
+        errorMessage={errorMessage}
+        handleSubmit={handleSubmit}
+      />
     </div>
   );
 };
