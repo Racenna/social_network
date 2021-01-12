@@ -9,14 +9,6 @@ export const maxLengthCreator = (maxLength) => (value) => {
   return undefined;
 };
 
-export const postFormValidate = (values) => {
-  const errors = {};
-  if (values.post.length > 100) {
-    errors.post = 'Must be 100 character or less';
-  }
-  return errors;
-};
-
 export const profileDescriptionValidate = (values) => {
   const errors = {};
 

@@ -1,41 +1,48 @@
 import React from 'react';
 import styles from './MyPostsForm.module.css';
 import send from './../../../../assets/svg/send.svg';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { postFormValidate } from '../../../../util/validator/validators';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const postSchemaValidate = Yup.object().shape({
+  post: Yup.string()
+    .min(2, 'Must be 2 character')
+    .max(100, 'Must be 100 character or less')
+    .required('Required')
+    .trim(),
+});
 
 const MyPostsForm = ({ handleSubmit }) => {
+  const formik = useFormik({
+    initialValues: {
+      post: '',
+    },
+    validationSchema: postSchemaValidate,
+    onSubmit: (values, { resetForm }) => {
+      handleSubmit(values);
+      resetForm();
+    },
+  });
+
   return (
-    <Formik
-      initialValues={{
-        post: '',
-      }}
-      validate={postFormValidate}
-      onSubmit={(values, { resetForm }) => {
-        if (values.post.length === 0 || values.post.trim() === '') return;
-        handleSubmit(values);
-        resetForm();
-      }}
-    >
-      <Form>
-        <div className={styles.input_post}>
-          <Field
-            className={styles.input_field}
-            name='post'
-            type='textarea'
-            placeholder='type text'
-          />
-          <button type='submit'>
-            <img src={send} alt='Send' />
-          </button>
-        </div>
-        <ErrorMessage
-          className={styles.error_message}
+    <form onSubmit={formik.handleSubmit}>
+      <div className={styles.input_post}>
+        <input
+          className={styles.input_field}
           name='post'
-          component='div'
+          type='textarea'
+          onChange={formik.handleChange}
+          value={formik.values.post}
+          placeholder='type text'
         />
-      </Form>
-    </Formik>
+        <button type='submit'>
+          <img src={send} alt='Send' />
+        </button>
+      </div>
+      {formik.errors.post ? (
+        <div className={styles.error_message}>{formik.errors.post}</div>
+      ) : null}
+    </form>
   );
 };
 export default MyPostsForm;

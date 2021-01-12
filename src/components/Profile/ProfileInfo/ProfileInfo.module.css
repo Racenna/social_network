@@ -65,10 +65,10 @@
 .user_description .text_input {
   width: 40%;
   height: inherit;
-  padding: 0px 20px;
+  padding: 0px 5px;
   box-sizing: border-box;
   border: 2px solid #666666;
-  border-radius: 1rem;
+  border-radius: 0.3rem;
   background-color: #666666;
   color: #ffffff;
   resize: none;
@@ -78,10 +78,10 @@
 .edit_contacts .text_input {
   width: 70%;
   height: inherit;
-  padding: 0px 20px;
+  padding: 0px 5px;
   box-sizing: border-box;
   border: 2px solid #666666;
-  border-radius: 1rem;
+  border-radius: 0.3rem;
   background-color: #666666;
   color: #ffffff;
   resize: none;
