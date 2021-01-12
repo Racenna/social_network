@@ -59,7 +59,6 @@ const ProfileDescriptionForm = ({ handleSubmit, profile }) => {
     onSubmit: (values, {}) => {
       handleSubmit(values);
     },
-    validateOnMount: true,
   });
 
   return (
@@ -129,31 +128,39 @@ const ProfileDescriptionForm = ({ handleSubmit, profile }) => {
         </div>
         <div className={styles.edit_contacts}>
           <span>Contacts:</span>
-          {Object.keys(formik.values.contacts).map((key) => {
-            return (
-              <>
-                <div key={key}>
-                  <label htmlFor={`contacts.${key}`}>{key}:</label>
-                  <input
-                    className={styles.text_input}
-                    id={`contacts.${key}`}
-                    name={`contacts.${key}`}
-                    type='text'
-                    onChange={formik.handleChange}
-                    value={formik.values.contacts[key]}
-                  />
-                </div>
-                {formik.errors.contacts && formik.errors.contacts[key] ? (
-                  <div className={styles.error_message}>
-                    {formik.errors.contacts[key]}
-                  </div>
-                ) : null}
-              </>
-            );
-          })}
+          {Object.keys(formik.values.contacts).map((key) => (
+            <Contacts
+              key={key}
+              contact={key}
+              handleChange={formik.handleChange}
+              value={formik.values.contacts[key]}
+              errors={formik.errors}
+            />
+          ))}
         </div>
       </div>
     </form>
+  );
+};
+
+const Contacts = ({ contact, handleChange, value, errors }) => {
+  return (
+    <>
+      <div>
+        <label htmlFor={`contacts.${contact}`}>{contact}:</label>
+        <input
+          className={styles.text_input}
+          id={`contacts.${contact}`}
+          name={`contacts.${contact}`}
+          type='text'
+          onChange={handleChange}
+          value={value}
+        />
+      </div>
+      {errors.contacts && errors.contacts[contact] ? (
+        <div className={styles.error_message}>{errors.contacts[contact]}</div>
+      ) : null}
+    </>
   );
 };
 
