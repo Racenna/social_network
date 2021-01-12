@@ -86,3 +86,10 @@
   color: #ffffff;
   resize: none;
 }
+
+.error_message {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+
+  color: #fc5a5a;
+}
