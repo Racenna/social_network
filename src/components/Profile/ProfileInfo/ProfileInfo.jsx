@@ -54,7 +54,6 @@ const ProfileInfo = ({ isOwner, profile, status }) => {
         </div>
         {editMode ? (
           <ProfileDescriptionReduxForm
-            // initialValues={profile}
             handleSubmit={handleSubmit}
             profile={profile}
           />
