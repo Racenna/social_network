@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { sidebarDataSelector } from '../../selectors/navbarSelectors';
+import { sidebarDataSelector } from '../../redux/sidebarReducer/navbarSelectors';
 import styles from './Navbar.module.css';
 import Sidebar from './Sidebar/Sidebar';
 import Navigation from './Navigation/Navigation';
