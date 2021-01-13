@@ -1,4 +1,4 @@
-.input_massage {
+.input_message {
   width: 80%;
   grid-area: i;
   display: flex;
@@ -7,7 +7,7 @@
   margin: 12px auto;
 }
 
-.input_massage .input_form {
+.input_message .input_form {
   width: 100%;
   height: 43px;
   padding: 12px 20px;
@@ -19,7 +19,7 @@
   resize: none;
 }
 
-.input_massage button {
+.input_message button {
   padding-right: 8px;
   margin-left: 10px;
   max-height: 43px;
@@ -28,10 +28,10 @@
   background: #d87093;
 }
 
-.input_massage button:hover {
+.input_message button:hover {
   cursor: pointer;
 }
-.input_massage button:active {
+.input_message button:active {
   padding-right: 8px;
   margin-left: 10px;
   max-height: 43px;
@@ -40,9 +40,15 @@
   background: #b4315d;
 }
 
-.input_massage img {
+.input_message img {
   width: 30px;
   height: 30px;
+}
+
+.error_message {
+  margin-left: 6rem;
+
+  color: #fc5a5a;
 }
 
 ::placeholder {

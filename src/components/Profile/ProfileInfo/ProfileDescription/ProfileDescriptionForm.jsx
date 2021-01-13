@@ -1,64 +1,167 @@
 import React from 'react';
-import { reduxForm } from 'redux-form';
-import {
-  createField,
-  Input,
-  Textarea,
-} from '../../../common/FormsControls/FormsControls';
-import { required } from '../../../../util/validator/validators';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import styles from './../ProfileInfo.module.css';
-import errorStyles from '../../../common/FormsControls/FormsControls.module.css';
 
-const ProfileDescriptionForm = (props) => {
+const descriptionSchemaValidate = Yup.object().shape({
+  fullName: Yup.string()
+    .min(3, 'Must be 3 character or more')
+    .max(50, 'Must be 50 character or less')
+    .required('Required')
+    .trim(),
+  aboutMe: Yup.string()
+    .min(3, 'Must be 3 character or more')
+    .max(50, 'Must be 50 character or less'),
+  lookingForAJobDescription: Yup.string()
+    .required('Required')
+    .min(3, 'Must be 3 character or more')
+    .max(100, 'Must be 100 character or less'),
+  contacts: Yup.object({
+    facebook: Yup.string().matches(
+      /^https:\/\/(www|m).facebook.com\/(.*)$/gm,
+      'Incorrect facebook link'
+    ),
+    website: Yup.string().matches(
+      /^((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[.\!\/\\w]*))?)$/gi,
+      'Incorrect website link'
+    ),
+    vk: Yup.string().matches(/^https:\/\/vk.com\/(.*)$/gm, 'Incorrect vk link'),
+    twitter: Yup.string().matches(
+      /^https:\/\/twitter.com\/(.*)$/gm,
+      'Incorrect twitter link'
+    ),
+    instagram: Yup.string().matches(
+      /^https:\/\/www.instagram.com\/(.*)$/gm,
+      'Incorrect instagram link'
+    ),
+    youtube: Yup.string().matches(
+      /^https:\/\/www.youtube.com\/(.*)$/gm,
+      'Incorrect youtube link'
+    ),
+    github: Yup.string().matches(
+      /^https:\/\/github.com\/(.*)$/gm,
+      'Incorrect github link'
+    ),
+    mainLink: Yup.string().matches(
+      /^((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[.\!\/\\w]*))?)$/gi,
+      'Incorrect mainLink link'
+    ),
+  }),
+});
+
+const ProfileDescriptionForm = ({ handleSubmit, profile }) => {
+  const formik = useFormik({
+    initialValues: {
+      ...profile,
+      contacts: { ...profile.contacts },
+    },
+    validationSchema: descriptionSchemaValidate,
+    onSubmit: (values, {}) => {
+      handleSubmit(values);
+    },
+  });
+
   return (
-    <form onSubmit={props.handleSubmit} className={styles.user_description}>
-      <div>
-        <button onClick={() => {}}>save</button>
-      </div>
-      {props.error && (
-        <div className={errorStyles.summeryError}>{props.error}</div>
-      )}
-      <span>
-        Full name: {createField('Full name', 'fullName', [required], Input)}
-      </span>
-      <span>About Me: {createField('About me', 'aboutMe', [], Textarea)}</span>
-      <span>
-        Looking for a job:{' '}
-        {createField('', 'lookingForAJob', [], Input, { type: 'checkbox' })}
-      </span>
-      <span>
-        My professional skills:{' '}
-        {createField(
-          'My professional skills',
-          'lookingForAJobDescription',
-          [],
-          Textarea
-        )}
-      </span>
-      <div className={styles.contacts}>
-        Contacts:{' '}
-        {Object.keys(props.profile.contacts).map((key) => {
-          return (
-            <div key={key}>
-              {key}: {createField(key, 'contacts.' + key, [], Input)}
+    <form onSubmit={formik.handleSubmit}>
+      <div className={styles.user_description}>
+        <div>
+          <button className={styles.edit_button} type='submit'>
+            Save
+          </button>
+        </div>
+        <div>
+          <label htmlFor='fullName'>Full name:</label>
+          <input
+            className={styles.text_input}
+            id='fullName'
+            name='fullName'
+            type='text'
+            onChange={formik.handleChange}
+            value={formik.values.fullName}
+          />
+          {formik.errors.fullName ? (
+            <div className={styles.error_message}>{formik.errors.fullName}</div>
+          ) : null}
+        </div>
+        <div>
+          <label htmlFor='aboutMe'>About Me:</label>
+          <input
+            className={styles.text_input}
+            id='aboutMe'
+            name='aboutMe'
+            type='text'
+            onChange={formik.handleChange}
+            checked={formik.values.aboutMe}
+            value={formik.values.aboutMe}
+          />
+          {formik.errors.aboutMe ? (
+            <div className={styles.error_message}>{formik.errors.aboutMe}</div>
+          ) : null}
+        </div>
+        <div>
+          <label htmlFor='lookingForAJob'>Looking for a job:</label>
+          <input
+            id='lookingForAJob'
+            name='lookingForAJob'
+            type='checkbox'
+            onChange={formik.handleChange}
+            checked={formik.values.lookingForAJob}
+          />
+        </div>
+        <div>
+          <label htmlFor='lookingForAJobDescription'>
+            My professional skills:
+          </label>
+          <input
+            className={styles.text_input}
+            id='lookingForAJobDescription'
+            name='lookingForAJobDescription'
+            type='text'
+            onChange={formik.handleChange}
+            value={formik.values.lookingForAJobDescription}
+          />
+          {formik.errors.lookingForAJobDescription ? (
+            <div className={styles.error_message}>
+              {formik.errors.lookingForAJobDescription}
             </div>
-          );
-        })}
+          ) : null}
+        </div>
+        <div className={styles.edit_contacts}>
+          <span>Contacts:</span>
+          {Object.keys(formik.values.contacts).map((key) => (
+            <Contacts
+              key={key}
+              contact={key}
+              handleChange={formik.handleChange}
+              value={formik.values.contacts[key]}
+              errors={formik.errors}
+            />
+          ))}
+        </div>
       </div>
     </form>
   );
 };
 
-// const Contacts = ({ contactKey, contactValue }) => {
-//   return (
-//     <div>
-//       {contactKey}: {contactValue}
-//     </div>
-//   );
-// };
+const Contacts = ({ contact, handleChange, value, errors }) => {
+  return (
+    <>
+      <div>
+        <label htmlFor={`contacts.${contact}`}>{contact}:</label>
+        <input
+          className={styles.text_input}
+          id={`contacts.${contact}`}
+          name={`contacts.${contact}`}
+          type='text'
+          onChange={handleChange}
+          value={value}
+        />
+      </div>
+      {errors.contacts && errors.contacts[contact] ? (
+        <div className={styles.error_message}>{errors.contacts[contact]}</div>
+      ) : null}
+    </>
+  );
+};
 
-const ProfileDescriptionReduxForm = reduxForm({
-  form: 'editProfile',
-})(ProfileDescriptionForm);
-
-export default ProfileDescriptionReduxForm;
+export default ProfileDescriptionForm;

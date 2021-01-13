@@ -1,8 +1,8 @@
 import { authAPI, securityAPI } from '../api/api';
-import { stopSubmit } from 'redux-form';
 
 const SET_USER_DATA = 'auth/SET_USER_DATA';
 const GET_CAPTCHA_URL_SUCCESS = 'auth/GET_CAPTCHA_URL_SUCCESS';
+const SET_ERROR_MESSAGE = 'auth/SET_ERROR_MESSAGE';
 
 const initialState = {
   id: null,
@@ -10,6 +10,7 @@ const initialState = {
   login: null,
   isAuth: false,
   captchaUrl: null,
+  errorMessage: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -20,6 +21,11 @@ const authReducer = (state = initialState, action) => {
         ...action.payload,
       };
     case GET_CAPTCHA_URL_SUCCESS:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    case SET_ERROR_MESSAGE:
       return {
         ...state,
         ...action.payload,
@@ -37,6 +43,11 @@ export const setUserData = (id, email, login, isAuth) => ({
 export const getCaptchaUrlSuccess = (captchaUrl) => ({
   type: GET_CAPTCHA_URL_SUCCESS,
   payload: { captchaUrl },
+});
+
+export const setErrorMessage = (errorMessage) => ({
+  type: SET_ERROR_MESSAGE,
+  payload: { errorMessage },
 });
 
 export const getUserData = () => async (dispatch) => {
@@ -60,7 +71,7 @@ export const login = (email, password, rememberMe, captcha) => async (
     }
     const message =
       response.messages.length > 0 ? response.messages[0] : 'Some error';
-    dispatch(stopSubmit('login', { _error: message }));
+    dispatch(setErrorMessage(message));
   }
 };
 

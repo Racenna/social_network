@@ -1,32 +1,48 @@
 import React from 'react';
 import styles from './MyPostsForm.module.css';
 import send from './../../../../assets/svg/send.svg';
-import { maxLengthCreator } from './../../../../util/validator/validators';
-import { reduxForm, Field } from 'redux-form';
-import { Textarea } from '../../../common/FormsControls/FormsControls';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-const maxLength100 = maxLengthCreator(100);
+const postSchemaValidate = Yup.object().shape({
+  post: Yup.string()
+    .min(2, 'Must be 2 character')
+    .max(100, 'Must be 100 character or less')
+    .required('Required')
+    .trim(),
+});
 
 const MyPostsForm = ({ handleSubmit }) => {
-  return (
-    <form onSubmit={handleSubmit} className={styles.input_post}>
-      <Field
-        className={styles.input_field}
-        component={Textarea}
-        name='post'
-        placeholder='Type text'
-        validate={[maxLength100]}
-      />
+  const formik = useFormik({
+    initialValues: {
+      post: '',
+    },
+    validationSchema: postSchemaValidate,
+    onSubmit: (values, { resetForm }) => {
+      handleSubmit(values);
+      resetForm();
+    },
+  });
 
-      <button>
-        <img src={send} alt='send svg' />
-      </button>
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <div className={styles.input_post}>
+        <input
+          className={styles.input_field}
+          name='post'
+          type='textarea'
+          onChange={formik.handleChange}
+          value={formik.values.post}
+          placeholder='type text'
+        />
+        <button type='submit'>
+          <img src={send} alt='Send' />
+        </button>
+      </div>
+      {formik.errors.post ? (
+        <div className={styles.error_message}>{formik.errors.post}</div>
+      ) : null}
     </form>
   );
 };
-
-const MyPostsReduxForm = reduxForm({
-  form: 'post',
-})(MyPostsForm);
-
-export default MyPostsReduxForm;
+export default MyPostsForm;

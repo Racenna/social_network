@@ -21,8 +21,8 @@ const ProfileInfo = ({ isOwner, profile, status }) => {
     }
   };
 
-  const onSubmit = (data) => {
-    dispatch(saveProfile(data)).then(() => {
+  const handleSubmit = (values) => {
+    dispatch(saveProfile(values)).then(() => {
       setEditMode(false);
     });
   };
@@ -54,8 +54,7 @@ const ProfileInfo = ({ isOwner, profile, status }) => {
         </div>
         {editMode ? (
           <ProfileDescriptionReduxForm
-            initialValues={profile}
-            onSubmit={onSubmit}
+            handleSubmit={handleSubmit}
             profile={profile}
           />
         ) : (

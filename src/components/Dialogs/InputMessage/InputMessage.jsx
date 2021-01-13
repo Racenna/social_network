@@ -6,13 +6,12 @@ import InputMessageForm from './InputMessageForm/InputMessageForm';
 const InputMessage = () => {
   const dispatch = useDispatch();
 
-  const onSubmit = (data) => {
-    if (data.message === undefined || data.message.trim() === '') return;
-    dispatch(sendMessage(data.message.trim()));
-    data.message = '';
+  const handleSubmit = (values) => {
+    const { message } = values;
+    dispatch(sendMessage(message));
   };
 
-  return <InputMessageForm onSubmit={onSubmit} />;
+  return <InputMessageForm handleSubmit={handleSubmit} />;
 };
 
 export default InputMessage;

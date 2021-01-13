@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addPost } from './../../../redux/profileReducer';
 import { profileDataSelector } from '../../../selectors/profileSelectors';
 import Post from './Post/Post';
-import MyPostsReduxForm from './MyPostForm/MyPostsForm';
+import MyPostsForm from './MyPostForm/MyPostsForm';
 
 const MyPosts = () => {
   const profileData = useSelector(profileDataSelector);
@@ -14,16 +14,15 @@ const MyPosts = () => {
     <Post key={post.id} message={post.message} likeCount={post.likeCount} />
   ));
 
-  const onSubmit = (data) => {
-    if (data.post === undefined || data.post.trim() === '') return;
-    dispatch(addPost(data.post.trim()));
-    data.post = '';
+  const handleSubmit = (values) => {
+    const { post } = values;
+    dispatch(addPost(post));
   };
 
   return (
     <div>
       <h3>My post</h3>
-      <MyPostsReduxForm onSubmit={onSubmit} />
+      <MyPostsForm handleSubmit={handleSubmit} />
       <div>{posts}</div>
     </div>
   );

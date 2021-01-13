@@ -8,7 +8,9 @@ const ProfileDescription = (props) => {
     <div className={styles.user_description}>
       {props.isOwner && (
         <div>
-          <button onClick={props.toEditMode}>edit</button>
+          <button className={styles.edit_button} onClick={props.toEditMode}>
+            Edit
+          </button>
         </div>
       )}
       <span>Full name: {props.profile.fullName}</span>
