@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { savePhoto, saveProfile } from '../../../redux/profileReducer';
+import { savePhoto, saveProfile } from '../../../redux/profileReducer/index';
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileDescription from './ProfileDescription/ProfileDescription';
 import ProfileDescriptionReduxForm from './ProfileDescription/ProfileDescriptionForm';

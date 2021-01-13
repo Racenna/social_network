@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProfile, getStatus } from '../../redux/profileReducer';
+import { useParams } from 'react-router-dom';
 import {
+  getProfile,
+  getStatus,
   ownerIdSelector,
   profileSelector,
   statusSelector,
-} from '../../selectors/profileSelectors';
-import { useParams } from 'react-router-dom';
+} from '../../redux/profileReducer/index';
 import Profile from './Profile';
 
 const ProfileContainer = () => {
