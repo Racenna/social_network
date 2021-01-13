@@ -2,12 +2,12 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
+  login,
   captchaUrlSelector,
   errorMessageSelector,
-} from '../../selectors/loginSelectors';
-import { login } from '../../redux/authReducer';
+  isAuthSelector,
+} from '../../redux/authReducer/index';
 import LoginForm from './LoginForm/LoginForm';
-import { isAuthSelector } from '../../selectors/headerSelectors';
 
 const Login = () => {
   const isAuth = useSelector(isAuthSelector);

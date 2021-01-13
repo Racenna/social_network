@@ -1,5 +1,5 @@
 import { profileAPI, authAPI } from '../api/api';
-import { setUserData } from './authReducer';
+import { setUserData } from './authReducer/index';
 
 const ADD_POST = 'profile/ADD_POST';
 const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
@@ -61,7 +61,6 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-/* Action creator */
 export const addPost = (post) => ({ type: ADD_POST, post });
 
 export const setUserProfile = (profile) => ({
@@ -81,7 +80,6 @@ export const savePhotoSuccess = (photos) => ({
   photos,
 });
 
-/* Thunk */
 export const getProfile = (userId) => async (dispatch) => {
   if (userId) {
     const response = await profileAPI.getProfile(userId);
