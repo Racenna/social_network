@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { savePhoto, saveProfile } from '../../../redux/profileReducer/index';
 import Preloader from '../../common/Preloader/Preloader';
 import ProfileDescription from './ProfileDescription/ProfileDescription';
-import ProfileDescriptionReduxForm from './ProfileDescription/ProfileDescriptionForm';
+import ProfileDescriptionForm from './ProfileDescription/ProfileDescriptionForm';
 import defaultAvatar from './../../../assets/images/defaultAvatar.png';
 import styles from './ProfileInfo.module.css';
 import ProfileStatus from './ProfileStatus';
@@ -53,7 +53,7 @@ const ProfileInfo = ({ isOwner, profile, status }) => {
           <ProfileStatus status={status} />
         </div>
         {editMode ? (
-          <ProfileDescriptionReduxForm
+          <ProfileDescriptionForm
             handleSubmit={handleSubmit}
             profile={profile}
           />
