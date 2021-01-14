@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import queryString from 'query-string';
 import {
   getUsers,
   getProfileUsersSelector,
@@ -21,14 +23,27 @@ const UsersContainer = () => {
   const followingInProgress = useSelector(getFollowingInProgressSelector);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onPageChanged = (page) => {
     dispatch(getUsers(page, pageSize));
   };
 
   useEffect(() => {
-    dispatch(getUsers(currentPage, pageSize));
-  }, [currentPage, pageSize, dispatch]);
+    const parsed = queryString.parse(history.location.search);
+
+    let actualPage = currentPage;
+
+    if (!!parsed.page) actualPage = Number(parsed.page);
+    dispatch(getUsers(actualPage, pageSize));
+  }, []);
+
+  useEffect(() => {
+    history.push({
+      pathname: '/users',
+      search: `?page=${currentPage}`,
+    });
+  });
 
   return (
     <>
