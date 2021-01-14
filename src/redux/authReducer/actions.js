@@ -53,7 +53,7 @@ export const login = (email, password, rememberMe, captcha) => async (
 
 export const logout = () => async (dispatch) => {
   const response = await authAPI.logout();
-  if (response.resultCode === 0) {
+  if (response.data.resultCode === 0) {
     dispatch(setUserData(null, null, null, false));
   }
 };
