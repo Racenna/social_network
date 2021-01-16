@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import queryString from 'query-string';
+import { useHistory, useLocation } from 'react-router-dom';
 import {
   getUsers,
   getProfileUsersSelector,
@@ -24,26 +23,25 @@ const UsersContainer = () => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const location = useLocation();
 
   const onPageChanged = (page) => {
     dispatch(getUsers(page, pageSize));
+    history.push({
+      pathname: '/users',
+      search: `?page=${page}`,
+    });
   };
 
   useEffect(() => {
-    const parsed = queryString.parse(history.location.search);
-
-    let actualPage = currentPage;
-
-    if (!!parsed.page) actualPage = Number(parsed.page);
-    dispatch(getUsers(actualPage, pageSize));
-  }, []);
-
-  useEffect(() => {
-    history.push({
-      pathname: '/users',
-      search: `?page=${currentPage}`,
-    });
-  });
+    const params = new URLSearchParams(location.search);
+    const page = +params.get('page');
+    if (!page) {
+      dispatch(getUsers(1, pageSize));
+    } else {
+      dispatch(getUsers(page, pageSize));
+    }
+  }, [location, pageSize, dispatch]);
 
   return (
     <>
