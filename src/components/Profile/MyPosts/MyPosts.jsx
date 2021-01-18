@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPost } from './../../../redux/profileReducer';
-import { profileDataSelector } from '../../../selectors/profileSelectors';
+import { addPost, profileDataSelector } from '../../../redux/profileReducer';
 import Post from './Post/Post';
 import MyPostsForm from './MyPostForm/MyPostsForm';
 

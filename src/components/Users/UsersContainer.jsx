@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getUsers } from './../../redux/usersReducer';
 import {
+  getUsers,
   getProfileUsersSelector,
   getCurrentPageSelector,
   getPageSizeSelector,
   getTotalUsersCountSelector,
   getIsFetchingSelector,
   getFollowingInProgressSelector,
-} from '../../selectors/usersSelectors';
+} from '../../redux/usersReducer';
 import Preloader from '../common/Preloader/Preloader';
 import Users from './Users';
 

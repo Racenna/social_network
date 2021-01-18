@@ -1,17 +1,16 @@
-const SEND_MESSAGE = 'dialogs/SEND_MESSAGE';
+import { SEND_MESSAGE } from './actions';
 
 const initialState = {
   messages: [
-    { id: 1, message: 'Hellooooooooooooooo', status: 'Friend' },
-    { id: 2, message: 'Hello', status: 'Friend' },
+    { id: 1, message: 'Hello', status: 'Friend' },
+    { id: 2, message: 'Text ...... text =)', status: 'Friend' },
     {
       id: 3,
-      message: 'Hellooooooooooooooooooooooooooo!!!!!!!!!!!!!!!!!!',
+      message: '~(^-^~)',
       status: 'My',
     },
-    { id: 4, message: 'Hello', status: 'Friend' },
-    { id: 5, message: 'Hello', status: 'My' },
-    { id: 6, message: '...', status: 'My' },
+    { id: 4, message: 'lorem...', status: 'Friend' },
+    { id: 5, message: '???', status: 'My' },
   ],
 
   dialogs: [
@@ -56,7 +55,7 @@ const dialogsReducer = (state = initialState, action) => {
           {
             id: 65,
             message: action.payload,
-            status: 'My', //TODO: owner: user.id
+            status: 'My', //TODO owner: user.id
           },
         ],
       };
@@ -65,7 +64,5 @@ const dialogsReducer = (state = initialState, action) => {
       return state;
   }
 };
-
-export const sendMessage = (payload) => ({ type: SEND_MESSAGE, payload });
 
 export default dialogsReducer;
