@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { dialogsDataSelector } from '../../redux/dialogsReducer/index';
+import { dialogsDataSelector } from '../../redux/dialogsReducer';
 import DialogsItem from './DialogsItem/DialogsItem';
 import MessageItem from './MessageItem/MessageItem';
 import InputMessage from './InputMessage/InputMessage';

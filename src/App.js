@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { initializeApp, initializedSelector } from './redux/appReducer/index';
+import { initializeApp, initializedSelector } from './redux/appReducer';
 import Dialogs from './components/Dialogs/Dialogs';
 import News from './components/News/News';
 import Musics from './components/Musics/Musics';

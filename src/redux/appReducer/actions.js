@@ -1,4 +1,4 @@
-import { getUserData } from '../authReducer/index';
+import { getUserData } from '../authReducer';
 
 export const SET_INITIALIZED = 'app/SET_INITIALIZED';
 

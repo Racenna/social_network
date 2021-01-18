@@ -1,11 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  logout,
-  loginSelector,
-  isAuthSelector,
-} from '../../redux/authReducer/index';
+import { logout, loginSelector, isAuthSelector } from '../../redux/authReducer';
 import logo from './../../assets/svg/logo.svg';
 import styles from './Header.module.css';
 

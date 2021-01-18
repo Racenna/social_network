@@ -6,7 +6,7 @@ import {
   captchaUrlSelector,
   errorMessageSelector,
   isAuthSelector,
-} from '../../redux/authReducer/index';
+} from '../../redux/authReducer';
 import LoginForm from './LoginForm/LoginForm';
 
 const Login = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { follow, unfollow } from '../../../redux/usersReducer/index';
+import { follow, unfollow } from '../../../redux/usersReducer';
 import { NavLink } from 'react-router-dom';
 import userAvatar from './../../../assets/images/defaultAvatar.png';
 import styles from './User.module.css';

@@ -1,5 +1,5 @@
 import { profileAPI, authAPI } from '../../api/api';
-import { setUserData } from '../authReducer/index';
+import { setUserData } from '../authReducer';
 
 export const ADD_POST = 'profile/ADD_POST';
 export const SET_USER_PROFILE = 'profile/SET_USER_PROFILE';
