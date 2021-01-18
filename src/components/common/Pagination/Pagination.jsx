@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './Pagination.module.css';
 
 const Pagination = ({
@@ -43,27 +44,27 @@ const Pagination = ({
     }`;
 
     return (
-      <div
+      <NavLink
+        to={`/users?page=${page}`}
         key={page}
-        className={classes}
         onClick={() => {
           onPageChanged(page);
         }}
       >
-        {page}
-      </div>
+        <div className={classes}>{page}</div>
+      </NavLink>
     );
   });
 
   return (
     <div className={styles.pagination}>
-      <div className={styles.unselectable} onClick={prevuesPage}>
-        &larr;
-      </div>
+      <NavLink to={`/users?page=${currentPage - 1}`} onClick={prevuesPage}>
+        <div className={styles.unselectable}>&larr;</div>
+      </NavLink>
       {renderPage}
-      <div className={styles.unselectable} onClick={nextPage}>
-        &rarr;
-      </div>
+      <NavLink to={`/users?page=${currentPage + 1}`} onClick={nextPage}>
+        <div className={styles.unselectable}>&rarr;</div>
+      </NavLink>
     </div>
   );
 };

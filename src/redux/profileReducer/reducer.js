@@ -22,7 +22,7 @@ const profileReducer = (state = initialState, action) => {
         posts: [
           ...state.posts,
           {
-            id: 65,
+            id: state.posts.length + 1,
             message: action.post,
             likeCount: 0,
           },
