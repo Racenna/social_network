@@ -1,5 +1,3 @@
-import appReducer from './reducer';
-import { initializeApp } from './actions';
-import { initializedSelector } from './selectors';
-
-export { appReducer, initializeApp, initializedSelector };
+export { default } from './reducer';
+export * from './actions';
+export * from './selectors';
