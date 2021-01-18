@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { sendMessage } from '../../../redux/dialogsReducer/index';
+import { sendMessage } from '../../../redux/dialogsReducer';
 import InputMessageForm from './InputMessageForm/InputMessageForm';
 
 const InputMessage = () => {

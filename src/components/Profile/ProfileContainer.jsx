@@ -7,7 +7,7 @@ import {
   ownerIdSelector,
   profileSelector,
   statusSelector,
-} from '../../redux/profileReducer/index';
+} from '../../redux/profileReducer';
 import Profile from './Profile';
 
 const ProfileContainer = () => {

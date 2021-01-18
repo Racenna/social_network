@@ -8,7 +8,7 @@ import {
   getTotalUsersCountSelector,
   getIsFetchingSelector,
   getFollowingInProgressSelector,
-} from '../../redux/usersReducer/index';
+} from '../../redux/usersReducer';
 import Preloader from '../common/Preloader/Preloader';
 import Users from './Users';
 
