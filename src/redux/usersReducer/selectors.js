@@ -1,5 +1,3 @@
-export const getCurrentPageSelector = (state) => state.usersData.currentPage;
-
 export const getProfileUsersSelector = (state) => state.usersData.users;
 
 export const getPageSizeSelector = (state) => state.usersData.pageSize;
