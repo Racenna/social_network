@@ -6,7 +6,7 @@ const setInitialized = () => ({ type: SET_INITIALIZED });
 
 export const initializeApp = () => (dispatch) => {
   let promise = dispatch(getUserData());
-  Promise.all([promise]).then(() => {
+  promise.then(() => {
     dispatch(setInitialized());
   });
 };
