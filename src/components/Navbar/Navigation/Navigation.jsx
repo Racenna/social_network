@@ -1,12 +1,8 @@
 import React from 'react';
 import styles from './Navigation.module.css';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { getCurrentPageSelector } from '../../../redux/usersReducer';
 
 const Navigation = () => {
-  const currentPage = useSelector(getCurrentPageSelector);
-
   return (
     <div>
       <div className={styles.item}>
@@ -35,10 +31,7 @@ const Navigation = () => {
         </NavLink>
       </div>
       <div className={styles.item}>
-        <NavLink
-          to={`/users?page=${currentPage}`}
-          activeClassName={styles.active}
-        >
+        <NavLink to={`/users`} activeClassName={styles.active}>
           Find users
         </NavLink>
       </div>
