@@ -1,7 +1,6 @@
 import {
   FOLLOW_UNFOLLOW,
   SET_USERS,
-  SET_PAGE,
   SET_TOTAL_COUNT,
   TOGGLE_IS_FETCHING,
   TOGGLE_IS_FOLLOWING_PROGRESS,
@@ -11,7 +10,6 @@ const initialState = {
   users: [],
   pageSize: 5,
   totalUsersCount: 0,
-  currentPage: 1,
   isFetching: false,
   followingInProgress: [],
 };
@@ -34,11 +32,6 @@ const usersReducer = (state = initialState, action) => {
         users: action.users.map((user) => {
           return { ...user, photos: { ...user.photos } };
         }),
-      };
-    case SET_PAGE:
-      return {
-        ...state,
-        currentPage: action.currentPage,
       };
     case SET_TOTAL_COUNT:
       return {

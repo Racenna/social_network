@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Navigation.module.css';
 import { NavLink } from 'react-router-dom';
 
-const Navigation = (props) => {
+const Navigation = () => {
   return (
     <div>
       <div className={styles.item}>
@@ -31,7 +31,7 @@ const Navigation = (props) => {
         </NavLink>
       </div>
       <div className={styles.item}>
-        <NavLink to='/users' activeClassName={styles.active}>
+        <NavLink to={`/users`} activeClassName={styles.active}>
           Find users
         </NavLink>
       </div>
