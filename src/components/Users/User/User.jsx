@@ -45,8 +45,8 @@ const User = ({ user, followingInProgress }) => {
           <span className={styles.phrase}>{user.status}</span>
         </div>
         <div className={styles.country_city}>
-          <span>Ukrainian</span>
-          <span>Kharkiv</span>
+          <span>Country</span>
+          <span>City</span>
         </div>
       </div>
     </div>

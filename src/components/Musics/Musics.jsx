@@ -1,7 +1,6 @@
 import React from 'react';
-// import styles from "./Musics.module.css";
 
-const Musics = (props) => {
+const Musics = () => {
   return <div>Musics</div>;
 };
 
