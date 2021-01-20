@@ -1,11 +1,10 @@
 import * as axios from 'axios';
-import env from './../env';
 
 const instance = axios.create({
   withCredentials: true,
-  baseURL: env.BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
-    'API-KEY': env.API_KEY,
+    'API-KEY': process.env.REACT_APP_API_KEY,
   },
 });
 
