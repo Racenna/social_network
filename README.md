@@ -68,3 +68,38 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Usage
+
+### Clone repository
+
+git clone https://github.com/Racenna/social_networkgit \
+
+### Install dependencies
+
+> yarn install
+
+### Create .env file
+
+In root folder create .env file
+
+After add two variable REACT_APP_BASE_URL and REACT_APP_API_KEY
+
+We can find base url at https://social-network.samuraijs.com/docs
+
+For api key we need to be registered at https://social-network.samuraijs.com/
+
+In the settings profile we will find our api key and copy it
+
+The .env file should look like this
+
+```
+REACT_APP_API_KEY=e888e999-383a
+REACT_APP_BASE_URL=https://link.com/api
+```
+
+### Start app
+
+> yarn start
+
+After app started we can log in using data from registration at https://social-network.samuraijs.com/
